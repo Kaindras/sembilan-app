@@ -35,10 +35,11 @@ class ProfileController extends Controller
             $request->user()->email_verified_at = null;
         }
            if(!empty($request->user()->avatar)) {
-             Storage::disk('public')->delete($request->user()->avatar);
+             Storage::disk(config('filesystems.default_public_disk'))->delete($request->user()->avatar);
+
            }
             if ($request->hasFile('avatar')) {
-               $path = $request->file('avatar')->store('img', 'public');
+               $path = $request->file('avatar')->store('img', config('filesystems.default_public_disk'));
                 $validated['avatar'] = $path;
             }
         $request->user()->update($validated);
