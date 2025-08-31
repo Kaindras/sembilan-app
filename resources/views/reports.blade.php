@@ -45,7 +45,7 @@
               <div class="flex justify-between items-center">
                   <div class="flex items-center space-x-4">
                       <img class="w-7 h-7 rounded-full" 
-                      src="{{ $kapal->inspektur->avatar ? asset('storage/' . $kapal->inspektur->avatar) : asset('img/default-avatar.png') }}" alt="{{ $kapal->inspektur->name }}" />
+                      src="{{ asset('storage/' . $kapal->inspektur->avatar)}}" alt="{{ $kapal->inspektur->name }}" />
                       <span class="font-medium text-xs dark:text-white">
                          {{ $kapal->inspektur->name }}
                       </span>

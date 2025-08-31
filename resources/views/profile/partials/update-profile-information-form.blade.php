@@ -63,7 +63,7 @@
 <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
 @enderror
 <div>
-    <img class="w-20 h-20 rounded-full" src="{{ $user->avatar ? asset('storage/' . $user->avatar) : asset('img/default-avatar.png') }}" alt="{{ $user->name }}" id="avatar-preview">
+    <img class="w-20 h-20 rounded-full" src="{{ asset('storage/' . $user->avatar)') }}" alt="{{ $user->name }}" id="avatar-preview">
 
 </div>
             
