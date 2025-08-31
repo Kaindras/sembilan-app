@@ -25,7 +25,7 @@
                 <div class="relative flex max-w-xs items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 cursor-pointer">
                 <span class="absolute -inset-1.5"></span>
                 <span class="sr-only">Open user menu</span>
-                <img src="{{ asset('storage/' . Auth::user()->avatar)) }}" alt="{{ Auth::user()->name}}" class="size-8 rounded-full outline -outline-offset-1 outline-white/10" />
+                <img src="{{ Auth::user()->avatar ? asset('storage/' . Auth::user()->avatar) : asset('img/default-avatar.png') }}" alt="{{ Auth::user()->name}}" class="size-8 rounded-full outline -outline-offset-1 outline-white/10" />
                  <div class="ms-1 text-gray-300">
                 </div>
         
@@ -87,7 +87,7 @@
             <div class="relative flex max-w-xs items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 cursor-pointer">
                 <span class="absolute -inset-1.5"></span>
                 <span class="sr-only">Open user menu</span>
-                <img src="{{ asset('storage/' . Auth::user()->avatar)) }}" alt="{{ Auth::user()->name}}" class="size-8 rounded-full outline -outline-offset-1 outline-white/10" />
+                <img src="{{ Auth::user()->avatar ? asset('storage/' . Auth::user()->avatar) : asset('img/default-avatar.png') }}" alt="{{ Auth::user()->name}}" class="size-8 rounded-full outline -outline-offset-1 outline-white/10" />
                  <div class="ms-1 text-gray-300">
                 </div>
             <div class="px-4">
