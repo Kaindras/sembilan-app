@@ -19,14 +19,13 @@
           <h1
             class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white"
           >
-            BADAN MUTU PENGENDALIAN DAN PENGAWASAN MUTU HASIL KELAUTAN DAN PERIKANAN
+            BADAN PENGENDALIAN DAN PENGAWASAN MUTU HASIL KELAUTAN DAN PERIKANAN (BPPMHKP)
           </h1>
           <div class="mt-4 sm:items-center sm:gap-4 sm:flex">
             <p
               class="text-2xl font-extrabold text-gray-500 sm:text-3xl dark:text-white"
             >
             DENPASAR
-
             </p>
 
             <div class="flex items-center gap-2 mt-2 sm:mt-0">
