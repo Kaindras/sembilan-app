@@ -9,7 +9,7 @@
             <div class="ml-10 flex items-baseline space-x-4">
               <x-my-nav-link href="/" :current="request()->is('/')">Home</x-my-nav-link>
               <x-my-nav-link href="/services" :current="request()->is('services')">Service</x-my-nav-link>
-              <x-my-nav-link href="/reports" :current="request()->is('reports')">Report</x-my-nav-link>
+              <x-my-nav-link href="/charts" :current="request()->is('reports')">Report</x-my-nav-link>
             </div>
           </div>
         </div>

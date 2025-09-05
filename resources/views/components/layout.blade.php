@@ -8,6 +8,8 @@
  
      <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
      <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
+     <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.46.0/dist/apexcharts.min.js"></script>
+
     <title>{{ $title }}</title>
 </head>
 <body class="h-full">

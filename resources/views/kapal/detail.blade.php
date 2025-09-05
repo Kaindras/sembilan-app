@@ -139,7 +139,7 @@ URL: https://flowbite.com/docs/components/typography/
                       
               </tbody>
           </table>
-    <a href="/reports" class="text-xs text-blue-500 hover:underline">&laquo; Back All Reports &raquo;</a>
+    <a href="/kapals" class="text-xs text-blue-500 hover:underline">&laquo; Back All Reports &raquo;</a>
     </div>
 </main>
     </x-layout>

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_kapal')->nullable();
             $table->string('no_sertifikat')->nullable();
+            $table->date('masa_berlaku')->nullable();
             $table->string('grade')->nullable();
             $table->foreignId('pemilik_id')->constrained(
                 table: 'pemiliks',
@@ -39,8 +40,8 @@ return new class extends Migration
             $table->string('kapal_aktif')->nullable();
             $table->text('uraian')->nullable();
             $table->text('catatan')->nullable();
-           
             $table->timestamps();
+           
         });
     }
 

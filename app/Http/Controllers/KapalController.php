@@ -17,7 +17,7 @@ class KapalController extends Controller
      */
     public function index()
     {
-        $kapals = Kapal::latest()->where('inspektur_id', Auth::user()->id);
+        $kapals = Kapal::latest()->where('id', Auth::user()->id);
         if (request('keyword')) {
             $kapals->where('nama_kapal', 'like', '%' . request('keyword') . '%');
         }

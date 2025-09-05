@@ -13,17 +13,18 @@ Route::get('/', function () {
 Route::get('/services', function () {
     return view('services', ['title' => 'Services']);
 });
-Route::get('/reports', function () {
-    return view('reports', ['title' => 'Report', 'kapals' => Kapal::latest()->filter(request(['search','pemilik','inspektur']))->paginate(5)->withQueryString()]);
+Route::get('/charts', function () {
+    return view('charts', ['title' => 'Charts', 'kapals' => Kapal::latest()->filter(request(['search','pemilik','inspektur']))->paginate(5)->withQueryString()]);
+});
+Route::get('/kapals', function () {
+    return view('kapal.kapals', ['title' => 'Report', 'kapals' => Kapal::latest()->filter(request(['search','pemilik','inspektur']))->paginate(5)->withQueryString()]);
 });
 
 Route::get('/reports/cpib', function () {
     return view('cpib.cpib-reports', ['title' => 'Report', 'kapals' => Kapal::latest()->filter(request(['search','pemilik','inspektur']))->paginate(5)->withQueryString()]);
 });
 
-Route::get('/reports/{kapal:id}', function(Kapal $kapal){
-    return view('detail', ['title' => 'Data Kapal', 'kapal' => $kapal]);
-});
+
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -31,6 +32,9 @@ Route::get('/reports/{kapal:id}', function(Kapal $kapal){
 
 
     Route::middleware('auth','verified')->group(function(){
+    Route::get('/kapals/{kapal:id}', function(Kapal $kapal){
+    return view('kapal.detail', ['title' => 'Data Kapal', 'kapal' => $kapal]);
+});
     Route::get('/dashboard', [KapalController::class, 'index'])->name('dashboard');
     Route::post('/dashboard', [KapalController::class, 'store']);
     Route::get('/dashboard/create',[KapalController::class,'create']);
