@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CpibBenihController;
 use App\Http\Controllers\KapalController;
 use App\Models\Kapal;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +15,10 @@ Route::get('/services', function () {
 });
 Route::get('/reports', function () {
     return view('reports', ['title' => 'Report', 'kapals' => Kapal::latest()->filter(request(['search','pemilik','inspektur']))->paginate(5)->withQueryString()]);
+});
+
+Route::get('/reports/cpib', function () {
+    return view('cpib.cpib-reports', ['title' => 'Report', 'kapals' => Kapal::latest()->filter(request(['search','pemilik','inspektur']))->paginate(5)->withQueryString()]);
 });
 
 Route::get('/reports/{kapal:id}', function(Kapal $kapal){
@@ -34,6 +39,7 @@ Route::get('/reports/{kapal:id}', function(Kapal $kapal){
     Route::patch('/dashboard/{kapal:id}', [KapalController::class, 'update']);
     Route::get('/dashboard/{kapal:nama_kapal}',[KapalController::class,'show']);   
     });
+
 
     Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
