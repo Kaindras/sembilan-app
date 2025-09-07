@@ -17,7 +17,7 @@ class Kapal extends Model
     use HasFactory;
 
     protected $guarded = [];
-    protected $with =['inspektur', 'pemilik'];
+    protected $with = ['inspektur', 'pemilik', 'sppd'];
 
     public function inspektur(): BelongsTo
     {
@@ -28,29 +28,33 @@ class Kapal extends Model
     {
         return $this->belongsTo(Pemilik::class);
     }
-      #[Scope]
+
+    public function sppd(): BelongsTo
+    {
+        return $this->belongsTo(Sppd::class);
+    }
+
+    #[Scope]
     protected function scopeFilter(Builder $query, array $filters): void
     {
-        $query->when($filters['search']  ?? false, function($query , $search)
-            {
-           return $query->where('title', 'like','%' . request('search') . '%');
-          
+        $query->when($filters['search'] ?? false, function($query , $search){
+           return $query->where('nama_kapal', 'like', '%' . $search .'%');
         });
 
-        $query->when($filters['pemilik'] ?? false, function($query, $pemilik)
-            {
-           return $query->whereHas('pemilik',
-            fn(Builder $query)=>
-            $query->where('nama', '$pemilik')
-           );
-        });
+        // $query->when($filters['pemilik'] ?? false, function($query , $pemilik){
+        //    return $query->whereHas('pemilik', 
+        //    fn(Builder $query) =>
+        //    $query->where('nama', $pemilik)
+        // );
+        // });
 
-          $query->when($filters['inspektur'] ?? false, function($query, $inspektur)
-            {
-           return $query->whereHas('inspektur',
-            fn(Builder $query)=>
-            $query->where('name', '$inspektur')
-           );
-        });
+        // $query->when($filters['inspektur'] ?? false, function($query , $inspektur){
+        //    return $query->whereHas('inspektur', 
+        //    fn(Builder $query) =>
+        //    $query->where('name', $inspektur)
+        // );
+        // });
     }
+ 
+    
 }

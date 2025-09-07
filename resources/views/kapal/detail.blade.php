@@ -1,36 +1,12 @@
 <x-layout :title=$title>
-    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        
-    {{-- <article class="py-8 max-w-screen-md border-b border-gray-300">
-    <a href="{{ $kapal->id }}" class="hover:underline">
-    <h2 class="mb-1 text-3xl tracking-tight font-bold text-gray-950">{{ $kapal->nama_kapal }}</h2></a>
-    <div class="text-base text-gray-500">
-        <a href="">{{ $kapal['nama_kapal'] }} | {{ $kapal['asal_pelabuhan'] }}</a>
-    </div>
-    
-    Nama Pemilik:
-    <p class="my-4 font-light">{{ $kapal->pemilik->nama}}</p>
-    Nomor Sertifikat
-    <p class="my-4 font-light">{{ $kapal->no_sertifikat}}</p>
-    Masa Berlaku
-    <p class="my-4 font-light">25-12-2025</p>
-    <a href="/reports" class="text-blue-500 hover:underline">&laquo; Back All Reports &raquo;</a>
-    </article> --}}
-
-
-    <!-- 
-Install the "flowbite-typography" NPM package to apply styles and format the article content: 
-
-URL: https://flowbite.com/docs/components/typography/ 
--->
-
-<main class="pt-8 pb-8 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 antialiased">
-  <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
-      <article class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
-          <header class="mb-4 lg:mb-6 not-format">
+<div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <main class="pt-8 pb-8 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 antialiased">
+    <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
+    <article class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
+    <a href="/kapals" class="text-xs text-blue-500 hover:underline">&laquo; Back All Reports &raquo;</a>
+        <header class="mb-4 lg:mb-6 not-format">
               <address class="flex items-center mb-6 not-italic">
                   <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                      {{-- <img class="mr-4 w-16 h-16 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="Jese Leos"> --}}
                       <div>
                           <a href="#" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">{{ $kapal->nama_kapal }}</a>
                           <p class="text-base text-gray-500 dark:text-gray-400">{{ $kapal->pemilik->nama }}</p>
@@ -40,6 +16,22 @@ URL: https://flowbite.com/docs/components/typography/
                   </div>
               </address>
             </header>
+{{-- Gallery --}}
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div>
+        <img class="h-auto max-w-xs rounded-lg" src="{{ $kapal->foto ? asset('storage/' . $kapal->foto) : asset('img/kapal_01.jpeg') }}" alt="{{ $kapal->nama_kapal}}" id="foto-preview">
+    </div>
+    <div>
+        @if($kapal->sertifikat)
+        <embed src="{{ asset('storage/' . $kapal->sertifikat) }}" type="application/pdf" width="100%" height="300px" />
+        @endif
+        </div>
+        <div>
+        {{-- @if($kapal->sertifikat)
+         <a href="{{ asset('storage/' . $kapal->sertifikat) }}" target="_blank">Lihat Sertifikat (PDF)</a>
+        @endif --}}
+        </div>
+</div>
 
           <h4>Data Inspeksi</h4>
           {{-- <p>A serif is a small shape or projection that appears at the beginning or end of a stroke on a letter.
@@ -140,7 +132,7 @@ URL: https://flowbite.com/docs/components/typography/
               </tbody>
           </table>
     <a href="/kapals" class="text-xs text-blue-500 hover:underline">&laquo; Back All Reports &raquo;</a>
-    </div>
+    </div>  
 </main>
     </x-layout>
      

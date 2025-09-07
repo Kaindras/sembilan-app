@@ -1,3 +1,10 @@
+@push('style')
+<link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+<link
+    href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+    rel="stylesheet"
+/>
+@endpush
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900">
@@ -54,8 +61,8 @@
         </div>
 
         {{-- Avatar Profile Picture --}}
-        <div>
-              <label class="block mb-2 text-sm font-medium text-gray-800 dark:text-white" for="avatar">Upload Image</label>
+    <div>
+    <label class="block mb-2 text-sm font-medium text-gray-800 dark:text-white" for="avatar">Upload Image</label>
   <input class="@error('avatar') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="avatar_help" id="avatar" name="avatar" type="file" accept="image/png, image/jpg, image/jpeg">
   <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="avatar_help">.png or .jpg!</div>
 </div>
@@ -84,6 +91,7 @@
         </div>
     </form>
 </section>
+@push('script')
 <script>
       const input = document.getElementById('avatar');
   const previewPhoto = () => {
@@ -99,3 +107,29 @@
   }
   input.addEventListener("change", previewPhoto);
 </script>
+{{-- <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>
+
+<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+<script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+<script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+<script>
+    FilePond.registerPlugin(FilePondPluginImagePreview);
+    FilePond.registerPlugin(FilePondPluginFileValidateType);
+    FilePond.registerPlugin(FilePondPluginFileValidateSize);
+
+    
+
+    const inputElement = document.querySelector('#avatar');
+    const pond = FilePond.create(inputElement, {
+            acceptedFileTypes: ['image/*'],
+            maxFileSize: '2MB',
+            server: {
+                url: '/upload',
+                header: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            }
+
+    });
+</script> --}}
+@endpush

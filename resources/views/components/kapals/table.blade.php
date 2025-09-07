@@ -138,11 +138,11 @@
                     </tbody>
                 </table>
             </div>
-            @if ($kapals->hasPages())
-            <div class="py-3">
+            {{-- @if ($kapals->hasPages()) --}}
+            {{-- <div class="py-3">
                 {{ $kapals->links() }}
-            </div>
-            @endif
+            </div> --}}
+            {{-- @endif --}}
                 
 
         </div>

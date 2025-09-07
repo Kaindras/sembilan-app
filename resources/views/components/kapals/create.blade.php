@@ -189,9 +189,35 @@
                         @error('catatan')
                         <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
                         @enderror
-                    </div>
+                </div>
 
-                    <div class="flex gap-2">
+                {{-- Upload Foto Kapal --}}
+                {{-- <div class="pdf">
+                    <label class="block mb-2 text-sm font-medium text-gray-800 dark:text-white" for="kapal">Upload Foto Kapal</label>
+                    <input class="@error('sertifikat') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="sertifikat_help" id="sertifikat" name="sertifikat" type="file" accept="file/pdf, image/png, image/jpg, image/jpeg">
+                    <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="sertifikat_help"> .png or .jpg !</div> 
+                   
+                    @error('sertifikat')
+                    <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                    @enderror
+                    <div>
+                    <img class="w-20 h-20 rounded-full" src="" alt="" id="sertifikat-preview"> </div>
+                </div> --}}
+
+                {{-- Upload Sertifikat --}}
+                {{-- <div class="pdf">
+                    <label class="block mb-2 text-sm font-medium text-gray-800 dark:text-white" for="sertifikat">Upload Sertifikat</label>
+                    <input class="@error('sertifikat') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="sertifikat_help" id="sertifikat" name="sertifikat" type="file">
+                    <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="sertifikat_help"> .png or .pdf !</div> 
+                   
+                     @error('sertifikat')
+                    <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                    @enderror
+                    <div>
+                    <img class="w-20 h-20 rounded-full" src="{{ asset('file/cpib-01.pd') }}" alt="{{ $kapal->nama_kapal }}" id="sertifikat-preview"> </div>
+                </div> --}}
+
+                <div class="flex gap-2">
                 <button type="submit" class="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                     <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />

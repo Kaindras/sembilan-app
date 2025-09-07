@@ -1,4 +1,10 @@
-        <!-- Modal content -->
+@push('style')
+<link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+<link
+    href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+    rel="stylesheet"
+/>
+@endpush
         <div class="max-w-2xl relative p-4 bg-white rounded-lg border dark:bg-gray-800 sm:p-5">
             <!-- Modal header -->
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
@@ -25,7 +31,7 @@
             
             
                 <!-- Modal body -->
-            <form action="/dashboard/{{ $kapal->id }}" method="POST">
+            <form action="/dashboard/{{ $kapal->id }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
             <div class="mb-4">
@@ -192,7 +198,33 @@
                         @enderror
                     </div>
 
-                    <div class="flex gap-2">
+                               {{-- Upload Foto Kapal --}}
+                <div class="pdf">
+                    <label class="block mb-2 text-sm font-medium text-gray-800 dark:text-white" for="kapal">Upload Foto Kapal</label>
+                    <input class="@error('foto') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="foto_help" id="foto" name="foto" type="file" accept="file/pdf, image/png, image/jpg, image/jpeg">
+                    <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="foto_help"> .png or .jpg !</div> 
+                   
+                    @error('foto')
+                    <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                    @enderror
+                    <div>
+                    <img class="rounded-sm w-36 h-36" src="{{ $kapal->foto ? asset($kapal->foto) : asset('/img/logo_navapp.png') }}" alt="{{ $kapal->nama_kapal }}" id="foto-preview"> </div>
+                </div>
+
+                {{-- Upload Sertifikat --}}
+                <div class="pdf">
+                    <label class="block mb-2 text-sm font-medium text-gray-800 dark:text-white" for="sertifikat">Upload Sertifikat</label>
+                    <input class="@error('sertifikat') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="sertifikat_help" id="sertifikat" name="sertifikat" type="file">
+                    <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="sertifikat_help"> File must.pdf !</div> 
+                   
+                     @error('sertifikat')
+                    <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                    @enderror
+                    <div>
+                    <img class="rounded-sm w-36 h-36" src="{{ $kapal->sertifikat ? asset('/img/' . $kapal->sertifikat) : asset('/file/kapal_01.jpg') }}" alt="{{ $kapal->nama_kapal }}" id="foto-preview"> </div>
+                    </div>
+                
+                <div class="flex gap-2">
                 <button type="submit" class="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                     Update Vessel
                 </button>
@@ -204,6 +236,37 @@
         </div>
 
                    
-
+@push('script')
    
-{{-- {{ var_dump($pemiliks) }} --}}
+<script>
+      const input = document.getElementById('foto');
+  const previewPhoto = () => {
+    const file = input.files;
+    if (file) {
+      const fileReader = new FileReader();
+      const preview = document.getElementById('foto-preview');
+      fileReader.onload = function(event) {
+        preview.setAttribute('src', event.target.result);
+      }
+      fileReader.readAsDataURL(file[0]);
+    }
+  }
+  input.addEventListener("change", previewPhoto);
+</script>
+{{-- <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+<script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+<script>
+    FilePond.registerPlugin(FilePondPluginImagePreview);
+    FilePond.registerPlugin(FilePondPluginFileValidateType);
+
+
+    const inputElement = document.querySelector('#foto');
+    const pond = FilePond.create(inputElement,{
+            acceptedFileTypes: ['image/*'],
+            maxFileSize: '2MB',
+
+    });
+</script> --}}
+
+@endpush

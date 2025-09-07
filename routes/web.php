@@ -14,22 +14,19 @@ Route::get('/services', function () {
     return view('services', ['title' => 'Services']);
 });
 Route::get('/charts', function () {
-    return view('charts', ['title' => 'Charts', 'kapals' => Kapal::latest()->filter(request(['search','pemilik','inspektur']))->paginate(5)->withQueryString()]);
+    return view('charts', ['title' => 'Charts']);
 });
 Route::get('/kapals', function () {
-    return view('kapal.kapals', ['title' => 'Report', 'kapals' => Kapal::latest()->filter(request(['search','pemilik','inspektur']))->paginate(5)->withQueryString()]);
+    return view('kapal.kapals', ['title' => 'Report',
+     'kapals' => Kapal::latest()
+     ->filter(request(['search','kapal','inspektur','pemilik']))
+     ->paginate(5)
+     ->withQueryString()]);
 });
 
 Route::get('/reports/cpib', function () {
     return view('cpib.cpib-reports', ['title' => 'Report', 'kapals' => Kapal::latest()->filter(request(['search','pemilik','inspektur']))->paginate(5)->withQueryString()]);
 });
-
-
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
 
     Route::middleware('auth','verified')->group(function(){
     Route::get('/kapals/{kapal:id}', function(Kapal $kapal){
@@ -49,6 +46,7 @@ Route::get('/reports/cpib', function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/upload', [ProfileController::class, 'upload']);
 });
 
 require __DIR__.'/auth.php';

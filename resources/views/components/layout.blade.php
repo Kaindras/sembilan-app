@@ -9,6 +9,8 @@
      <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
      <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
      <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.46.0/dist/apexcharts.min.js"></script>
+     {{-- CSS stack --}}
+        @stack('style')
 
     <title>{{ $title }}</title>
 </head>
@@ -34,5 +36,7 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+{{-- JavaScript Stack --}}
+ @stack('script')
 </body>
 </html>

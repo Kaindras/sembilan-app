@@ -37,15 +37,22 @@ class ProfileController extends Controller
            if(!empty($request->user()->avatar)) {
              Storage::disk(config('filesystems.default_public_disk'))->delete($request->user()->avatar);
 
-           }
+           } 
             if ($request->hasFile('avatar')) {
                $path = $request->file('avatar')->store('tmp', config('filesystems.default_public_disk'));
                 $validated['avatar'] = $path;
             }
-        $request->user()->update($validated);
+            $request->user()->update($validated);
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
+    // public function upload(Request $request) {
+    //      if ($request->hasFile('avatar'))
+    //      {
+    //         $path = $request->file('avatar')->store('tmp', config('filesystems.default_public_disk'));
+    //      }
+    //      return $path;
+    // }
 
     /**
      * Delete the user's account.

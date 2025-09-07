@@ -3,7 +3,7 @@
       <div class="flex h-16 items-center justify-between">
         <div class="flex items-center">
           <div class="shrink-0">
-            <img src="/img/logo_navapp.png" alt="sembilan app" class="size-8" />
+            <img src="/img/logo_navapp.png" alt="sembilan app" class="h-9 w-9" />
           </div>
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
