@@ -29,10 +29,9 @@
               <div class="flex justify-between items-center mb-5 text-gray-600">
               </div>
               <h2 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"> <a href="/kapals/{{ $kapal['id'] }}" class="hover:underline">{{ $kapal->nama_kapal }}</h2>
-                <div>
-                   
-                    <img class="rounded-full w-36 h-36" src="{{ $kapal->foto ? asset('storage/' . $kapal->foto) : asset('img/kapal_01.jpeg') }}" alt="{{ $kapal->nama_kapal}}" id="foto-preview">
-                    </div>
+                {{-- <div>
+                    <img class="rounded-full w-36 h-36" src="{{ asset('storage/' . $kapal->foto) }}" alt="{{ $kapal->nama_kapal}}" id="foto-preview">
+                    </div> --}}
                    <br>
                 <span class="{{ $kapal->inspektur->color }} text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -49,9 +48,9 @@
                       {{-- <img class="w-7 h-7 rounded-full" 
                       src="{{ $kapal->inspektur->avatar ? asset('storage/' . $kapal->inspektur->avatar) : asset('img/default-avatar.png') }}" alt="{{ $kapal->nama_kapal }}" /> --}}
                    
-                      {{-- <span class=" mt-4 font-medium text-xs dark:text-white">
+                      <span class=" mt-4 font-medium text-xs dark:text-white">
                          Validity period: {{ $kapal->tgl_inspeksi}}
-                      </span> --}}
+                      </span>
                   </div></a>
                   <a href="/kapals/{{ $kapal->id }}" class="inline-flex text-xs items-center font-medium text-primary-600 dark:text-primary-500 hover:underline">
                       Detail

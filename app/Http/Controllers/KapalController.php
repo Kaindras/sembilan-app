@@ -21,11 +21,6 @@ class KapalController extends Controller
     {
         $kapals = Kapal::all();
         return view('dashboard.index', ['kapals' => $kapals]);
-        // $kapals = Kapal::latest()->where('id', Auth::user()->id);
-        // if (request('keyword')) {
-        //     $kapals->where('nama_kapal', 'like', '%' . request('keyword') . '%');
-        // }
-        // return view('dashboard.index', ['kapals' => $kapals ->paginate(5)->withQueryString()]);
     }
 
     /**
@@ -232,8 +227,8 @@ public function update(Request $request, Kapal $kapal)
         $kapal->sertifikat = $path;
     }
 
-    // ✅ Simpan semua perubahan
-    $kapal->save();
+
+    // $kapal->save();
 
     return redirect('/dashboard')->with(['success' => 'Data kapal berhasil diupdate!']);
 }
