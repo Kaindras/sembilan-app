@@ -211,7 +211,7 @@ public function update(Request $request, Kapal $kapal)
         }
         $file = $request->file('foto');
         $filename = time() . '_' . $file->getClientOriginalName();
-        $path = $file->storeAs('kapal/foto', $filename, config('filesystems.default_public_disk'));
+        $path = $file->storeAs('img', $filename, config('filesystems.default_public_disk'));
         $kapal->foto = $path;
     }
 
@@ -223,12 +223,12 @@ public function update(Request $request, Kapal $kapal)
         }
         $file = $request->file('sertifikat');
         $filename = time() . '_' . $file->getClientOriginalName();
-        $path = $file->storeAs('kapal/sertifikat', $filename, config('filesystems.default_public_disk'));
+        $path = $file->storeAs('doc', $filename, config('filesystems.default_public_disk'));
         $kapal->sertifikat = $path;
     }
 
 
-    // $kapal->save();
+    $kapal->save();
 
     return redirect('/dashboard')->with(['success' => 'Data kapal berhasil diupdate!']);
 }
