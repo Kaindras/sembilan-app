@@ -8,6 +8,9 @@
               <address class="flex items-center mb-6 not-italic">
                   <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
                       <div>
+                        <div>
+        <img class="h-auto max-w-xs rounded-lg" src="{{ asset('storage/' . $kapal->foto) }}" alt="{{ $kapal->nama_kapal}}" id="foto-preview">
+    </div>
                           <a href="#" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">{{ $kapal->nama_kapal }}</a>
                           <p class="text-base text-gray-500 dark:text-gray-400">{{ $kapal->pemilik->nama }}</p>
                           <p class="text-base text-gray-500 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022">Alamat : {{ $kapal->pemilik->alamat }}</time></p>
