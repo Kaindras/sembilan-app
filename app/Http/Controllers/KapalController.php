@@ -232,8 +232,8 @@ public function update(Request $request, Kapal $kapal)
         $kapal->sertifikat = $path;
     }
 
-    // ✅ Simpan semua perubahan
-    $kapal->save();
+
+    // $kapal->save();
 
     return redirect('/dashboard')->with(['success' => 'Data kapal berhasil diupdate!']);
 }

@@ -31,7 +31,7 @@
               <h2 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"> <a href="/kapals/{{ $kapal['id'] }}" class="hover:underline">{{ $kapal->nama_kapal }}</h2>
                 <div>
                    
-                    <img class="rounded-full w-36 h-36" src="{{ $kapal->foto ? asset('storage/' . $kapal->foto) : asset('img/kapal_01.jpeg') }}" alt="{{ $kapal->nama_kapal}}" id="foto-preview">
+                    <img class="rounded-full w-36 h-36" src="{{ asset('storage/' . $kapal->foto) }}" alt="{{ $kapal->nama_kapal}}" id="foto-preview">
                     </div>
                    <br>
                 <span class="{{ $kapal->inspektur->color }} text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">

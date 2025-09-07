@@ -208,7 +208,7 @@
                     <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
                     @enderror
                     <div>
-                    <img class="rounded-sm w-36 h-36" src="{{ $kapal->foto ? asset($kapal->foto) : asset('/img/logo_navapp.png') }}" alt="{{ $kapal->nama_kapal }}" id="foto-preview"> </div>
+                    <img class="rounded-sm w-36 h-36" src="{{ asset($kapal->foto)}}" alt="{{ $kapal->nama_kapal }}" id="foto-preview"> </div>
                 </div>
 
                 {{-- Upload Sertifikat --}}
@@ -221,7 +221,7 @@
                     <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
                     @enderror
                     <div>
-                    <img class="rounded-sm w-36 h-36" src="{{ $kapal->sertifikat ? asset('/img/' . $kapal->sertifikat) : asset('/file/kapal_01.jpg') }}" alt="{{ $kapal->nama_kapal }}" id="foto-preview"> </div>
+                    <img class="rounded-sm w-36 h-36" src="{{ asset('storage/' . $kapal->sertifikat) }}" alt="{{ $kapal->nama_kapal }}" id="foto-preview"> </div>
                     </div>
                 
                 <div class="flex gap-2">

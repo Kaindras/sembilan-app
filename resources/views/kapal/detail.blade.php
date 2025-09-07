@@ -16,22 +16,7 @@
                   </div>
               </address>
             </header>
-{{-- Gallery --}}
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <div>
-        <img class="h-auto max-w-xs rounded-lg" src="{{ $kapal->foto ? asset('storage/' . $kapal->foto) : asset('img/kapal_01.jpeg') }}" alt="{{ $kapal->nama_kapal}}" id="foto-preview">
-    </div>
-    <div>
-        @if($kapal->sertifikat)
-        <embed src="{{ asset('storage/' . $kapal->sertifikat) }}" type="application/pdf" width="100%" height="300px" />
-        @endif
-        </div>
-        <div>
-        {{-- @if($kapal->sertifikat)
-         <a href="{{ asset('storage/' . $kapal->sertifikat) }}" target="_blank">Lihat Sertifikat (PDF)</a>
-        @endif --}}
-        </div>
-</div>
+
 
           <h4>Data Inspeksi</h4>
           {{-- <p>A serif is a small shape or projection that appears at the beginning or end of a stroke on a letter.
