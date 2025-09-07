@@ -211,24 +211,24 @@ public function update(Request $request, Kapal $kapal)
 
     // ✅ Update Foto
     if ($request->hasFile('foto')) {
-        if ($kapal->foto && Storage::disk('public')->exists($kapal->foto)) {
-            Storage::disk('public')->delete($kapal->foto);
+        if ($kapal->foto && Storage::disk(config('filesystems.default_public_disk'))->exists($kapal->foto)) {
+            Storage::disk(config('filesystems.default_public_disk'))->delete($kapal->foto);
         }
         $file = $request->file('foto');
         $filename = time() . '_' . $file->getClientOriginalName();
-        $path = $file->storeAs('kapal/foto', $filename, 'public');
+        $path = $file->storeAs('kapal/foto', $filename, config('filesystems.default_public_disk'));
         $kapal->foto = $path;
     }
 
     // ✅ Update Sertifikat
     if ($request->hasFile('sertifikat')) {
         
-        if ($kapal->sertifikat && Storage::disk('public')->exists($kapal->sertifikat)) {
-            Storage::disk('public')->delete($kapal->sertifikat);
+        if ($kapal->sertifikat && Storage::disk(config('filesystems.default_public_disk'))->exists($kapal->sertifikat)) {
+            Storage::disk(config('filesystems.default_public_disk'))->delete($kapal->sertifikat);
         }
         $file = $request->file('sertifikat');
         $filename = time() . '_' . $file->getClientOriginalName();
-        $path = $file->storeAs('kapal/sertifikat', $filename, 'public');
+        $path = $file->storeAs('kapal/sertifikat', $filename, config('filesystems.default_public_disk'));
         $kapal->sertifikat = $path;
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\View\View;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
@@ -46,14 +47,22 @@ class ProfileController extends Controller
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
-    // public function upload(Request $request) {
+    public function upload(Request $request) {
     //      if ($request->hasFile('avatar'))
     //      {
     //         $path = $request->file('avatar')->store('tmp', config('filesystems.default_public_disk'));
     //      }
     //      return $path;
-    // }
-
+    if ($request->avatar) {
+        if (!empty($request->user()->avatar)){
+            Storage::disk(config('filesystems.default_public_disk'))->delete($request->user()->avatar);
+        }
+        $newFileName = Str::after($request->avatar, 'tmp/');
+        Storage::disk('public')->move($request->avatar, "img/$newFileName");
+        $validated['avatar'] = "img/$newFileName";
+    }
+    }
+    
     /**
      * Delete the user's account.
      */

@@ -50,7 +50,7 @@ return [
         'upload_disk' => [
             'driver' => 'local',
             'root' => base_path('../public_html/storage'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,
