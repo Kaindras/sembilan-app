@@ -21,11 +21,6 @@ class KapalController extends Controller
     {
         $kapals = Kapal::all();
         return view('dashboard.index', ['kapals' => $kapals]);
-        // $kapals = Kapal::latest()->where('id', Auth::user()->id);
-        // if (request('keyword')) {
-        //     $kapals->where('nama_kapal', 'like', '%' . request('keyword') . '%');
-        // }
-        // return view('dashboard.index', ['kapals' => $kapals ->paginate(5)->withQueryString()]);
     }
 
     /**
