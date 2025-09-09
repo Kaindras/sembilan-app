@@ -38,11 +38,11 @@
     <div class="flex" id="devices">
       <div class="flex items-center me-4">
           <input id="desktop" type="checkbox" value="desktop" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-          <label for="desktop" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Certificated</label>
+          <label for="desktop" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Certified</label>
       </div>
       <div class="flex items-center me-4">
           <input id="tablet" type="checkbox" value="tablet" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-          <label for="tablet" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Uncertificated</label>
+          <label for="tablet" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Uncertified</label>
       </div>
       <div class="flex items-center me-4">
           <input id="mobile" type="checkbox" value="mobile" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
@@ -104,8 +104,10 @@ Number of Registered Vessels</label>
   </div>
   
 </x-layout>
-    
-{{-- const getChartOptions = () => {
+    <script>
+
+   
+const getChartOptions = () => {
   return {
     series: [35.1, 23.5, 2.4, 5.4],
     colors: ["#1C64F2", "#16BDCA", "#FDBA8C", "#E74694"],
@@ -131,13 +133,13 @@ Number of Registered Vessels</label>
             total: {
               showAlways: true,
               show: true,
-              label: "Unique visitors",
+              label: "Inspection Report",
               fontFamily: "Inter, sans-serif",
               formatter: function (w) {
                 const sum = w.globals.seriesTotals.reduce((a, b) => {
                   return a + b
                 }, 0)
-                return '$' + sum + 'k'
+                return 'Total ' + sum + 'k'
               },
             },
             value: {
@@ -158,7 +160,7 @@ Number of Registered Vessels</label>
         top: -2,
       },
     },
-    labels: ["Direct", "Sponsor", "Affiliate", "Email marketing"],
+    labels: ["Certified", "Uncertified", "Process" ],
     dataLabels: {
       enabled: false,
     },
@@ -201,7 +203,7 @@ if (document.getElementById("donut-chart") && typeof ApexCharts !== 'undefined')
       const checkbox = event.target;
       if (checkbox.checked) {
           switch(checkbox.value) {
-            case 'desktop':
+            case 'certified':
               chart.updateSeries([15.1, 22.5, 4.4, 8.4]);
               break;
             case 'tablet':
@@ -223,8 +225,8 @@ if (document.getElementById("donut-chart") && typeof ApexCharts !== 'undefined')
   checkboxes.forEach((checkbox) => {
       checkbox.addEventListener('change', (event) => handleCheckboxChange(event, chart));
   });
-} --}}
-               
+}
+    </script>            
                  
                 
                 
