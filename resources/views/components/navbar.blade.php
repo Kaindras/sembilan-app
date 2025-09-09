@@ -70,7 +70,7 @@
         <!-- Current: "bg-gray-900 dark:bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
           <x-my-nav-link class="block" href="/" :current="request()->is('/')">Home</x-my-nav-link>
               <x-my-nav-link class="block" href="/services" :current="request()->is('services')">Service</x-my-nav-link>
-              <x-my-nav-link class="block" href="/reports" :current="request()->is('reports')">Report</x-my-nav-link>
+              <x-my-nav-link class="block" href="/charts" :current="request()->is('reports')">Report</x-my-nav-link>
       </div>
       <div class="border-t border-white/10 pt-4 pb-3">
         @if (Auth::check())
