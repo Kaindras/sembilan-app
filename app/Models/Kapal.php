@@ -3,14 +3,15 @@
 namespace App\Models;
 
 
+use App\Models\Abk;
 use App\Models\User;
 use App\Models\Pemilik;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Kapal extends Model
 {
@@ -35,9 +36,9 @@ class Kapal extends Model
         return $this->belongsTo(Sppd::class, 'sppd_id','id');
     }
 
-    public function abks(): HasMany
+    public function abk(): HasMany
     {
-        return $this->hasMany(Abk::class, 'kapal_id', 'id');
+        return $this->hasMany(Abk::class, 'kapal_id');
     }
 
     #[Scope]
