@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('no_sppd')->nullable();
             $table->string('hal_tugas')->nullable();
-            $table->date('tgl_tugas')->nullable();
-            $table->string('nm_ketua')->nullable();;
-            $table->string('nm_anggota_1')->nullable();;
-            $table->string('nm_anggota_2')->nullable();;
-            $table->string('nm_anggota_3')->nullable();;
-            $table->string('nm_anggota_4')->nullable();;
+            $table->date('tgl_sppd')->nullable();
+            $table->string('nm_ketua')->nullable();
+            $table->string('nm_anggota_1')->nullable();
+            $table->string('nm_anggota_2')->nullable();
+            $table->string('nm_anggota_3')->nullable();
+            $table->string('nm_anggota_4')->nullable();
             $table->timestamps();
 
         });

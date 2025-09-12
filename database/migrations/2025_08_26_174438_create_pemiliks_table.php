@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pemiliks', function (Blueprint $table) {
             $table->id();
-            $table->string('nama')->nullable();
+            $table->string('nm_pemilik')->nullable();
             $table->string('siup')->nullable();
             $table->string('sipi_sikpi')->nullable();
             $table->date('tgl_sipi_sikpi')->nullable();

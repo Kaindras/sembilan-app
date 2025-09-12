@@ -33,13 +33,72 @@
                         @enderror
                     </div> 
 
+                      <div class="mb-4">
+                        <label for="hal_tugas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hal Tugas</label>
+                        <input type="text" name="hal_tugas" id="hal_tugas" class="@error('hal_tugas') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type vessel" value="{{ old('hal_tugas') }}">
+                        @error('hal_tugas')
+                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                        @enderror
+                    </div> 
 
-            {{-- Data Pemilik --}}
-            <div class="mb-4">
+
+
+
+
+                    <div class="mb-4">
+                        <label for="tgl_sppd" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor SPPD</label>
+                        <input type="date" name="tgl_sppd" id="tgl_sppd" class="@error('tgl_sppd') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type vessel" value="{{ old('tgl_sppd') }}">
+                        @error('tgl_sppd')
+                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                        @enderror
+                    </div> 
+            <div class="mb-4"> Tim Inspeksi</div>
+                <div class="mb-4">
+                        <label for="nm_ketua" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Katua</label>
+                        <input type="text" name="nm_ketua" id="nm_ketua" class="@error('nm_ketua') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type vessel" value="{{ old('nm_ketua') }}">
+                        @error('nm_ketua')
+                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                        @enderror
+                </div>
+
+                 <div class="mb-4">
+                        <label for="nm_anggota_1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Anggota</label>
+                        <input type="text" name="nm_anggota_1" id="nm_anggota_1" class="@error('nm_anggota_1') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type vessel" value="{{ old('nm_anggota_1') }}">
+                        @error('nm_anggota_1')
+                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                        @enderror
+                </div>
+
+                  <div class="mb-4">
+                        <label for="nm_anggota_2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Anggota</label>
+                        <input type="text" name="nm_anggota_2" id="nm_anggota_2" class="@error('nm_anggota_2') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type vessel" value="{{ old('nm_anggota_2') }}">
+                        @error('nm_anggota_2')
+                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                        @enderror
+                </div>
+
+                  <div class="mb-4">
+                        <label for="nm_anggota_3" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Anggota</label>
+                        <input type="text" name="nm_anggota_3" id="nm_anggota_3" class="@error('nm_anggota_3') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type vessel" value="{{ old('nm_anggota_3') }}">
+                        @error('nm_anggota_3')
+                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                        @enderror
+                </div>
+
+                  <div class="mb-4">
+                        <label for="nm_anggota_4" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Anggota</label>
+                        <input type="text" name="nm_anggota_4" id="nm_anggota_4" class="@error('nm_anggota_4') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type vessel" value="{{ old('nm_anggota_4') }}">
+                        @error('nm_anggota_4')
+                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                        @enderror
+                </div>
+
+                {{-- Data Pemilik --}}
+            {{-- <div class="mb-4">
                 <label for="pemilik_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Pemilik</label><select name="pemilik_id" id="pemilik" class="@error('pemilik_id') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                     <option selected="" value="">Select name</option>
                     @foreach (App\Models\Pemilik::get() as $pemilik )
-                    <option value="{{ $pemilik->id }}" @selected(old('pemilik_id') == $pemilik->id)>{{ $pemilik->nm_pemilik }}</option>
+                    <option value="{{ $pemilik->id }}" @selected(old('pemilik_id') == $pemilik->id)>{{ $pemilik->nama }}</option>
                     @endforeach
                     </select>
                     @error('pemilik_id')
@@ -52,7 +111,7 @@
                         @error('nama_kapal')
                         <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
                         @enderror
-                    </div> 
+                    </div>  --}}
 
 
                 <div class="flex gap-2">

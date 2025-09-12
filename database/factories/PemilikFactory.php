@@ -18,7 +18,7 @@ class PemilikFactory extends Factory
     public function definition(): array
     {
         return [
-            'nama'=> fake()->company(),
+            'nm_pemilik'=> fake()->company(),
             'siup' =>fake()->iso8601(),
             'sipi_sikpi'=>fake()->iso8601(),
             'tgl_sipi_sikpi'=>fake()->date(),

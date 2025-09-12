@@ -30,10 +30,8 @@ class KapalController extends Controller
      */
     public function create()
     {  
-     $kapals = Kapal::with(['sppd','pemilik','inspektur','abk'])->get();
-        
-
-    return view('dashboard.create', ['kapals' => $kapals]);
+        $kapals = Kapal::with(['sppd','pemilik','inspektur','abk'])->get();
+        return view('dashboard.create', ['kapals' => $kapals]);
     }
 
     /**
@@ -41,39 +39,35 @@ class KapalController extends Controller
      */
     public function store(Request $request)
     {   
-
-Validator::make($request->all(), [
-        'sppd_id' => 'required|string',
-        'pemilik_id' => 'required|string',
-        'nama_kapal' => 'required|unique:kapals',
+         Validator::make($request->all(), [
+        'no_sppd'    => 'required|string|unique:sppds,no_sppd',
+        // 'pemilik_id' => 'required|integer',
+        // 'nm_pemilik' => 'required|string',
+        'nama_kapal' => 'required|string|unique:kapals,nama_kapal',
+        // 'nama_abk'   => 'required|string',
     ], [
         'required' => 'field :attribute ini harus di isi!',
         'unique' => 'feld :attribute harus unik!',
-//     ], [
-//         'sppd_id' => 'sppd_id',
-//         'pemilik_id' => 'nama pemilik',
-//         'nama_kapal' => 'nama kapal',
-
+   
     ])->validate();
 
-                // DB::beginTransaction();
+                $sppd = Sppd::create([
+                'no_sppd' => $request->no_sppd,
+                ]);
+                $pemilik = Pemilik::create([
+                    'nm_pemilik' => $request->nm_pemilik,
+                ]);
+
                 $kapal = Kapal::create([
-                'sppd_id'    => $request->sppd_id,
-                'pemilik_id'    => $request->pemilik_id,
+                'sppd_id'    => $sppd->id,
+                'pemilik_id'    => $pemilik->id,
                 'nama_kapal' => $request->nama_kapal,
                 'inspektur_id' => Auth::user()->id, // benar
             ]);
+
             Abk::create([
             'kapal_id' => $kapal->id, // <-- yang benar
 ]);
-            // dd($request->all());
-        // Kapal::create([
-//         'sppd_id' => $request->sppd_id,
-//         'nama_kapal' => $request->nama_kapal,
-//         // 'no_sertifikat' => $request->no_sertifikat,
-//         // 'grade' => $request->grade,
-//         'pemilik_id' => $request->pemilik_id,
-//         'inspektur_id' => Auth::user()->id, // benar
         
     return redirect('/dashboard')->with(['success'=> 'Data kamu berhasil disimpan']);
 }
@@ -284,13 +278,3 @@ public function update(Request $request, Kapal $kapal)
         // 'foto' => $request->foto,
         // 'sertifikat' => $request->sertifikat,
     // ]);
-
-    //SPPD
-         // 'no_sppd' => $request->no_sppd,
-                // 'hal_tugas' => $request->hal_tugas,
-                // 'tgl_tugas' => $request->tgl_tugas,
-                // 'nm_ketua' => $request->nm_ketua,
-                // 'nm_anggota_1' => $request->nm_anggota_1,
-                // 'nm_anggota_2' => $request->nm_anggota_2,
-                // 'nm_anggota_3' => $request->nm_anggota_3,
-                // 'nm_anggota_4' => $request->nm_anggota_4,
