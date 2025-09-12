@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sppds', function (Blueprint $table) {
             $table->id();
             $table->string('no_sppd');
-            $table->string('nm_tugas');
+            $table->string('hal_tugas');
             $table->date('tgl_tugas');
             $table->string('nm_ketua');
             $table->string('nm_anggota_1');

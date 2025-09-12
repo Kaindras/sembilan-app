@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('no_sertifikat')->nullable();
             $table->date('masa_berlaku')->nullable();
             $table->string('grade')->nullable();
+            $table->foreignId('sppd_id')->constrained(
+                table: 'sppds',
+                indexName: 'sppd_id')->nullable();
             $table->foreignId('pemilik_id')->constrained(
                 table: 'pemiliks',
                 indexName: 'kapals_pemilik_id'
