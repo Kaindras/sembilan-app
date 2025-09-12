@@ -24,12 +24,15 @@
             <!-- Modal body -->
             <form action="/dashboard" method="POST">
                 @csrf
-                {{-- SPPD --}}
-            <div class="mb-4">
-                <label for="sppd_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor SPPD</label><select name="pemilik_id" id="pemilik" class="@error('sppd_id') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+          
 
-                    <option selected="" value="">Select nomor_sppd</option>
-                    @foreach (App\Models\Sppd::get() as $sppd)
+
+           
+
+             <div class="mb-4">
+                <label for="sppd_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor SPPD</label><select name="sppd_id" id="sppd" class="@error('sppd_id') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                    <option selected="" value="">Select name</option>
+                    @foreach (App\Models\Sppd::get() as $sppd )
                     <option value="{{ $sppd->id }}" @selected(old('sppd_id') == $sppd->id)>{{ $sppd->no_sppd }}</option>
                     @endforeach
                     </select>
@@ -40,7 +43,7 @@
         
 
             <div class="mb-4">
-                <label for="pemilik" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Pemilik</label><select name="pemilik_id" id="pemilik" class="@error('pemilik_id') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                <label for="pemilik_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Pemilik</label><select name="pemilik_id" id="pemilik" class="@error('pemilik_id') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                     <option selected="" value="">Select name</option>
                     @foreach (App\Models\Pemilik::get() as $pemilik )
                     <option value="{{ $pemilik->id }}" @selected(old('pemilik_id') == $pemilik->id)>{{ $pemilik->nama }}</option>
@@ -56,176 +59,8 @@
                         @error('nama_kapal')
                         <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
                         @enderror
-                        </div> 
+                    </div> 
 
-                    {{-- <div class="mb-4">
-                        <label for="no_sertifikat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor Sertifikat</label>
-                        <input type="text" name="no_sertifikat" id="no_sertifikat" class="@error('pemilik_id') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type Certificate" value="{{ old('no_sertifikat') }}">
-                         @error('no_sertifikat')
-                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                     <div class="mb-4">
-                        <label for="grade" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Grade</label>
-                        <input type="text" name="grade" id="grade" class="@error('pemilik_id') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type grade" value="{{ old('grade') }}">
-                         @error('grade')
-                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="ukuran" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ukuran Kapal</label>
-                        <input type="text" name="ukuran" id="ukuran" class="@error('pemilik_id') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type" value="{{ old('ukuran') }}">
-                         @error('ukuran')
-                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="daerah_tangkap" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Daerah Tangkap</label>
-                        <input type="text" name="daerah_tangkap" id="daerah_tangkap" class="@error('pemilik_id') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type" value="{{ old('daerah_tangkap') }}">
-                         @error('daerah_tangkap')
-                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="alat_tangkap" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alat Tangkap</label>
-                        <input type="text" name="alat_tangkap" id="alat_tangkap" class="@error('pemilik_id') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type" value="{{ old('alat_tangkap') }}">
-                         @error('alat_tangkap')
-                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                     <div class="mb-4">
-                        <label for="lama_trip" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Lama Trip</label>
-                        <input type="text" name="lama_trip" id="lama_trip" class="@error('pemilik_id') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type" value="{{ old('lama_trip') }}">
-                         @error('lama_trip')
-                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="jenis_ikan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis Ikan</label>
-                        <input type="text" name="jenis_ikan" id="jenis_ikan" class="@error('pemilik_id') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type" value="{{ old('jenis_ikan') }}">
-                         @error('jenis_ikan')
-                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="penanganan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Penanganan</label>
-                        <input type="text" name="penanganan" id="penanganan" class="@error('pemilik_id') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type" value="{{ old('penanganan') }}">
-                        @error('penanganan')
-                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="suhu" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Suhu</label>
-                        <input type="text" name="suhu" id="suhu" class="@error('pemilik_id') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type" value="{{ old('suhu') }}">
-                        @error('suhu')
-                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="suhu_palka" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Suhu Palka</label>
-                        <input type="text" name="suhu_palka" id="suhu_palka" class="@error('pemilik_id') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type" value="{{ old('suhu_palka') }}">
-                        @error('suhu_palka')
-                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="nilai_organoleptik" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nilai Organoleptik</label>
-                        <input type="text" name="nilai_organoleptik" id="nilai_organoleptik" class="@error('pemilik_id') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type" value="{{ old('nilai_organoleptik') }}">
-                        @error('nilai_organoleptik')
-                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="estimasi_berat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Berat Estimasi</label>
-                        <input type="text" name="estimasi_berat" id="estimasi_berat" class="@error('pemilik_id') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type" value="{{ old('estimasi_berat') }}">
-                        @error('estimasi_berat')
-                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="tipe_kapal" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipe Kapal</label>
-                        <input type="text" name="tipe_kapal" id="tipe_kapal" class="@error('pemilik_id') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type" value="{{ old('tipe_kapal') }}">
-                        @error('tipe_kapal')
-                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="tgl_inspeksi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Inspeksi</label>
-                        <input type="date" name="tgl_inspeksi" id="tgl_inspeksi" class="@error('pemilik_id') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type" value="{{ old('tgl_inspeksi') }}">
-                        @error('tgl_inspeksi')
-                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
-                        
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="pelabuhan_pangkalan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pelabuhan Pangkalan</label>
-                        <input type="text" name="pelabuhan_pangkalan" id="pelabuhan_pangkalan" class="@error('pemilik_id') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type" value="{{ old('pelabuhan_pangkalan') }}">
-                        @error('pelabuhan_pangkalan')
-                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="kapal_aktif" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kapal Aktif</label>
-                        <input type="boolean" name="kapal_aktif" id="kapal_aktif" class="@error('pemilik_id') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type" value="{{ old('kapal_aktif') }}">
-                        @error('kapal_aktif')
-                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
-                    </div>
-                  
-                    <div class="sm:col-span-2 mb-4">
-                        <label for="uraian" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Uraian Inspeksi</label><textarea name="uraian" id="uraian" rows="4" class="@error('pemilik_id') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write description here" value="{{ old('uraian') }}"></textarea>
-                        @error('uraian')
-                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="sm:col-span-2 mb-4">
-                        <label for="catatan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Catatan Inspektur</label><textarea  name="catatan" id="catatan" rows="4" class="@error('catatan') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write note here" value="{{ old('catatan') }}"></textarea>
-                        @error('catatan')
-                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
-                </div> --}}
-
-                {{-- Upload Foto Kapal --}}
-                {{-- <div class="pdf">
-                    <label class="block mb-2 text-sm font-medium text-gray-800 dark:text-white" for="kapal">Upload Foto Kapal</label>
-                    <input class="@error('sertifikat') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="sertifikat_help" id="sertifikat" name="sertifikat" type="file" accept="file/pdf, image/png, image/jpg, image/jpeg">
-                    <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="sertifikat_help"> .png or .jpg !</div> 
-                   
-                    @error('sertifikat')
-                    <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                    @enderror
-                    <div>
-                    <img class="w-20 h-20 rounded-full" src="" alt="" id="sertifikat-preview"> </div>
-                </div> --}}
-
-                {{-- Upload Sertifikat --}}
-                {{-- <div class="pdf">
-                    <label class="block mb-2 text-sm font-medium text-gray-800 dark:text-white" for="sertifikat">Upload Sertifikat</label>
-                    <input class="@error('sertifikat') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="sertifikat_help" id="sertifikat" name="sertifikat" type="file">
-                    <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="sertifikat_help"> .png or .pdf !</div> 
-                   
-                     @error('sertifikat')
-                    <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                    @enderror
-                    <div>
-                    <img class="w-20 h-20 rounded-full" src="{{ asset('file/cpib-01.pd') }}" alt="{{ $kapal->nama_kapal }}" id="sertifikat-preview"> </div>
-                </div> --}}
 
                 <div class="flex gap-2">
                 <button type="submit" class="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
@@ -248,3 +83,60 @@
 
    
 {{-- {{ var_dump($pemiliks) }} --}}
+
+      {{-- SPPD
+            
+            <div class="mb-4">
+                        <label for="hal_tugas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor SPPD</label>
+                        <input type="text" name="hal_tugas" id="hal_tugas" class="@error('pemilik_id') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type vessel" value="{{ old('hal_tugas') }}">
+                        @error('hal_tugas')
+                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                        @enderror
+            </div> 
+
+            <div class="mb-4">
+                        <label for="tgl_tugas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Inspeksi</label>
+                        <input type="date" name="tgl_tugas" id="tgl_tugas" class="@error('tgl_tugas') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type" value="{{ old('tgl_tugas') }}">
+                        @error('tgl_tugas')
+                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                        @enderror
+             </div>
+
+             <div class="mb-4">
+                        <label for="nm_ketua" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ketua Tim Petugas</label>
+                        <input type="text" name="nm_ketua" id="nm_ketua" class="@error('nm_ketua') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type vessel" value="{{ old('nm_ketua') }}">
+                        @error('nm_ketua')
+                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                        @enderror
+            </div> 
+
+            <div class="mb-4">
+                        <label for="nm_anggota_1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Anggota 1</label>
+                        <input type="text" name="nm_anggota_1" id="nm_anggota_1" class="@error('nm_anggota_1') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type vessel" value="{{ old('nm_anggota_1') }}">
+                        @error('nm_anggota_1')
+                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                        @enderror
+            </div> 
+
+            <div class="mb-4">
+                        <label for="nm_anggota_2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Anggota 2</label>
+                        <input type="text" name="nm_anggota_2" id="nm_anggota_2" class="@error('nm_anggota_2') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type vessel" value="{{ old('nm_anggota_2') }}">
+                        @error('nm_anggota_2')
+                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                        @enderror
+            </div> 
+
+            <div class="mb-4">
+                        <label for="nm_anggota_3" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Anggota 3</label>
+                        <input type="text" name="nm_anggota_3" id="nm_anggota_3" class="@error('nm_anggota_3') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type vessel" value="{{ old('nm_anggota_3') }}">
+                        @error('nm_anggota_3')
+                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                        @enderror
+            </div> 
+                    <div class="mb-4">
+                        <label for="nm_anggota_4" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Anggota 4</label>
+                        <input type="text" name="nm_anggota_4" id="nm_anggota_4" class="@error('nm_anggota_4') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type vessel" value="{{ old('nm_anggota_4') }}">
+                        @error('nm_anggota_4')
+                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                        @enderror
+            </div>  --}}

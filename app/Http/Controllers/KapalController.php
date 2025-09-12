@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sppd;
 use App\Models\User;
 use App\Models\Kapal;
 use App\Models\Pemilik;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 
 class KapalController extends Controller
@@ -28,13 +29,9 @@ class KapalController extends Controller
      */
     public function create()
     {  
-     $kapals = Kapal::all();
-    //  $pemiliks = Pemilik::all();
-    //  $data = [];
-    //  foreach(DB::table('pemiliks') as $row){
-    //     $data[] = $row;
-    //  }
-    //  dd($pemiliks);
+     $kapals = Kapal::with(['sppd','pemilik','inspektur','abks'])->get();
+        
+
     return view('dashboard.create', ['kapals' => $kapals]);
     }
 
@@ -42,88 +39,34 @@ class KapalController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    Validator::make($request->all(), [
-        'pemilik_id' => 'required|string',
-        'nama_kapal' => 'required|unique:kapals',
-        'no_sertifikat' => 'required|unique:kapals',
-        'grade' => 'required|string|max:1',
-        'ukuran' => 'required|alpha_num',
-        'daerah_tangkap' => 'required|string',
-        'alat_tangkap' => 'required|string',
-        'lama_trip' => 'required|alpha_num',
-        'jenis_ikan' => 'required|string',
-        'penanganan' => 'required|string',
-        'suhu' => 'required|alpha_num',
-        'suhu_palka' => 'required|alpha_num',
-        'nilai_organoleptik' => 'required|alpha_num',
-        'estimasi_berat' => 'required|alpha_num',
-        'tipe_kapal' => 'required|string',
-        'tgl_inspeksi' => 'required|date',
-        'pelabuhan_pangkalan' => 'required|string',
-        'kapal_aktif' => 'required|string',
-        'uraian' => 'required|string',
-        'catatan' => 'required|string',
-        'pemilik_id' => 'required|exists:pemiliks,id',
-        'foto' => 'required|string',
-        'sertifikat' => 'required|string',
-    ], [
-        'required' => 'field :attribute ini harus di isi!',
-        'unique' => 'feld :attribute harus unik!',
-
-    ], [
-        'pemilik_id' => 'nama pemilik',
-        'nama_kapal' => 'nama kapal',
-        'no_sertifikat' => 'nomor sertifikat',
-        'grade' => 'grade',
-        'ukuran' => 'ukuran',
-        'daerah_tangkap' => 'daerah penangkapan',
-        'alat_tangkap' => 'alat penangkap',
-        'lama_trip' => 'lama trip pelayaran',
-        'jenis_ikan' => 'jenis ikan',
-        'penanganan' => 'cara penanganan',
-        'suhu' => 'suhu',
-        'suhu_palka' => 'suhu pada palka',
-        'nilai_organoleptik' => 'nilai organoleptik',
-        'estimasi_berat' => 'estimasi berat',
-        'tipe_kapal' => 'tipe kapal',
-        'tgl_inspeksi' => 'tanggal inspeksi',
-        'pelabuhan_pangkalan' => 'pelabuhan pangkalan',
-        'kapal_aktif' => 'kapal aktif',
-        'uraian' => 'uraian',
-        'catatan' => 'catatan',
-        'foto' => 'foto',
-        'sertifikat' => 'foto',
-
-    ])->validate();
-
-    // Simpan kapal dengan pemilik_id
-    Kapal::create([
-        'nama_kapal' => $request->nama_kapal,
-        'no_sertifikat' => $request->no_sertifikat,
-        'grade' => $request->grade,
-        'pemilik_id' => $request->pemilik_id,
-        'inspektur_id' => Auth::user()->id, // benar
-        'ukuran' => $request->ukuran,
-        'daerah_tangkap' => $request->daerah_tangkap,
-        'alat_tangkap' => $request->alat_tangkap,
-        'lama_trip' => $request->lama_trip,
-        'jenis_ikan' => $request->jenis_ikan,
-        'penanganan' => $request->penanganan,
-        'suhu' => $request->suhu,
-        'suhu_palka' => $request->suhu_palka,
-        'nilai_organoleptik' => $request->nilai_organoleptik,
-        'estimasi_berat' => $request->estimasi_berat,
-        'tipe_kapal' => $request->tipe_kapal,
-        'tgl_inspeksi' => $request->tgl_inspeksi,
-        'pelabuhan_pangkalan' => $request->pelabuhan_pangkalan,
-        'kapal_aktif' => $request->kapal_aktif,
-        'uraian' => $request->uraian,
-        'catatan' => $request->catatan,
-        'foto' => $request->foto,
-        'sertifikat' => $request->sertifikat,
-    ]);
-    return redirect('/dashboard')->with(['success'=> 'Data kamu berhasil diupdate']);
+    {   
+                DB::beginTransaction();
+       
+                $kapal = Kapal::create([
+                // 'no_sppd' => $request->no_sppd,
+                // 'hal_tugas' => $request->hal_tugas,
+                // 'tgl_tugas' => $request->tgl_tugas,
+                // 'nm_ketua' => $request->nm_ketua,
+                // 'nm_anggota_1' => $request->nm_anggota_1,
+                // 'nm_anggota_2' => $request->nm_anggota_2,
+                // 'nm_anggota_3' => $request->nm_anggota_3,
+                // 'nm_anggota_4' => $request->nm_anggota_4,
+                 'sppd_id'    => $request->sppd_id,
+                'pemilik_id'    => $request->pemilik_id,
+                // 'kapal_id' => $request->kapal_id,
+                'nama_kapal' => $request->nama_kapal,
+                'inspektur_id' => Auth::user()->id, // benar
+            ]);
+            // dd($request->all());
+        // Kapal::create([
+//         'sppd_id' => $request->sppd_id,
+//         'nama_kapal' => $request->nama_kapal,
+//         // 'no_sertifikat' => $request->no_sertifikat,
+//         // 'grade' => $request->grade,
+//         'pemilik_id' => $request->pemilik_id,
+//         'inspektur_id' => Auth::user()->id, // benar
+        
+    return redirect('/dashboard')->with(['success'=> 'Data kamu berhasil disimpan']);
 }
 
 
@@ -246,3 +189,89 @@ public function update(Request $request, Kapal $kapal)
 
 
  
+
+// backup
+
+// Validator::make($request->all(), [
+//         'sppd_id' => 'required|string',
+//         'pemilik_id' => 'required|string',
+//         'nama_kapal' => 'required|unique:kapals',
+//         'no_sertifikat' => 'required|unique:kapals',
+//         'grade' => 'required|string|max:1',
+//         'ukuran' => 'required|alpha_num',
+//         'daerah_tangkap' => 'required|string',
+//         'alat_tangkap' => 'required|string',
+//         'lama_trip' => 'required|alpha_num',
+//         'jenis_ikan' => 'required|string',
+//         'penanganan' => 'required|string',
+//         'suhu' => 'required|alpha_num',
+//         'suhu_palka' => 'required|alpha_num',
+//         'nilai_organoleptik' => 'required|alpha_num',
+//         'estimasi_berat' => 'required|alpha_num',
+//         'tipe_kapal' => 'required|string',
+//         'tgl_inspeksi' => 'required|date',
+//         'pelabuhan_pangkalan' => 'required|string',
+//         'kapal_aktif' => 'required|string',
+//         'uraian' => 'required|string',
+//         'catatan' => 'required|string',
+//         'pemilik_id' => 'required|exists:pemiliks,id',
+//         'foto' => 'required|string',
+//         'sertifikat' => 'required|string',
+//     ], [
+//         'required' => 'field :attribute ini harus di isi!',
+//         'unique' => 'feld :attribute harus unik!',
+//     ], [
+//         'sppd_id' => 'sppd_id',
+//         'pemilik_id' => 'nama pemilik',
+//         'nama_kapal' => 'nama kapal',
+//         'no_sertifikat' => 'nomor sertifikat',
+//         'grade' => 'grade',
+//         'ukuran' => 'ukuran',
+//         'daerah_tangkap' => 'daerah penangkapan',
+//         'alat_tangkap' => 'alat penangkap',
+//         'lama_trip' => 'lama trip pelayaran',
+//         'jenis_ikan' => 'jenis ikan',
+//         'penanganan' => 'cara penanganan',
+//         'suhu' => 'suhu',
+//         'suhu_palka' => 'suhu pada palka',
+//         'nilai_organoleptik' => 'nilai organoleptik',
+//         'estimasi_berat' => 'estimasi berat',
+//         'tipe_kapal' => 'tipe kapal',
+//         'tgl_inspeksi' => 'tanggal inspeksi',
+//         'pelabuhan_pangkalan' => 'pelabuhan pangkalan',
+//         'kapal_aktif' => 'kapal aktif',
+//         'uraian' => 'uraian',
+//         'catatan' => 'catatan',
+//         'foto' => 'foto',
+//         'sertifikat' => 'foto',
+
+//     ])->validate();
+
+//     Simpan kapal dengan pemilik_id
+
+//     Kapal::create([
+//         'sppd_id' => $request->sppd_id,
+//         'nama_kapal' => $request->nama_kapal,
+//         // 'no_sertifikat' => $request->no_sertifikat,
+//         // 'grade' => $request->grade,
+//         'pemilik_id' => $request->pemilik_id,
+//         'inspektur_id' => Auth::user()->id, // benar
+        // 'ukuran' => $request->ukuran,
+        // 'daerah_tangkap' => $request->daerah_tangkap,
+        // 'alat_tangkap' => $request->alat_tangkap,
+        // 'lama_trip' => $request->lama_trip,
+        // 'jenis_ikan' => $request->jenis_ikan,
+        // 'penanganan' => $request->penanganan,
+        // 'suhu' => $request->suhu,
+        // 'suhu_palka' => $request->suhu_palka,
+        // 'nilai_organoleptik' => $request->nilai_organoleptik,
+        // 'estimasi_berat' => $request->estimasi_berat,
+        // 'tipe_kapal' => $request->tipe_kapal,
+        // 'tgl_inspeksi' => $request->tgl_inspeksi,
+        // 'pelabuhan_pangkalan' => $request->pelabuhan_pangkalan,
+        // 'kapal_aktif' => $request->kapal_aktif,
+        // 'uraian' => $request->uraian,
+        // 'catatan' => $request->catatan,
+        // 'foto' => $request->foto,
+        // 'sertifikat' => $request->sertifikat,
+    // ]);
