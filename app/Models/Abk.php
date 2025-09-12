@@ -16,7 +16,7 @@ class Abk extends Model
 
     public function kapal(): BelongsTo
      {
-        return $this->belongsTo(Kapal::class, 'kapal_id', 'id');
+        return $this->belongsTo(Kapal::class, 'kapal_id');
     }
     
 

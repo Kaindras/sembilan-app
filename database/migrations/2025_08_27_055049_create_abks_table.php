@@ -20,8 +20,8 @@ return new class extends Migration
             $table->foreignId('kapal_id')->constrained(
                 table: 'kapals',
                 indexName: 'kapal_id')->nullable();
-            $table->timestamps();
 
+            $table->timestamps();
         });
     }
 

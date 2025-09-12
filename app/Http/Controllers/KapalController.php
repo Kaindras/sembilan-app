@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Abk;
 use App\Models\Sppd;
 use App\Models\User;
 use App\Models\Kapal;
@@ -29,7 +30,7 @@ class KapalController extends Controller
      */
     public function create()
     {  
-     $kapals = Kapal::with(['sppd','pemilik','inspektur','abks'])->get();
+     $kapals = Kapal::with(['sppd','pemilik','inspektur','abk'])->get();
         
 
     return view('dashboard.create', ['kapals' => $kapals]);
@@ -40,23 +41,31 @@ class KapalController extends Controller
      */
     public function store(Request $request)
     {   
-                DB::beginTransaction();
-       
+
+Validator::make($request->all(), [
+        'sppd_id' => 'required|string',
+        'pemilik_id' => 'required|string',
+        'nama_kapal' => 'required|unique:kapals',
+    ], [
+        'required' => 'field :attribute ini harus di isi!',
+        'unique' => 'feld :attribute harus unik!',
+//     ], [
+//         'sppd_id' => 'sppd_id',
+//         'pemilik_id' => 'nama pemilik',
+//         'nama_kapal' => 'nama kapal',
+
+    ])->validate();
+
+                // DB::beginTransaction();
                 $kapal = Kapal::create([
-                // 'no_sppd' => $request->no_sppd,
-                // 'hal_tugas' => $request->hal_tugas,
-                // 'tgl_tugas' => $request->tgl_tugas,
-                // 'nm_ketua' => $request->nm_ketua,
-                // 'nm_anggota_1' => $request->nm_anggota_1,
-                // 'nm_anggota_2' => $request->nm_anggota_2,
-                // 'nm_anggota_3' => $request->nm_anggota_3,
-                // 'nm_anggota_4' => $request->nm_anggota_4,
-                 'sppd_id'    => $request->sppd_id,
+                'sppd_id'    => $request->sppd_id,
                 'pemilik_id'    => $request->pemilik_id,
-                // 'kapal_id' => $request->kapal_id,
                 'nama_kapal' => $request->nama_kapal,
                 'inspektur_id' => Auth::user()->id, // benar
             ]);
+            Abk::create([
+            'kapal_id' => $kapal->id, // <-- yang benar
+]);
             // dd($request->all());
         // Kapal::create([
 //         'sppd_id' => $request->sppd_id,
@@ -275,3 +284,13 @@ public function update(Request $request, Kapal $kapal)
         // 'foto' => $request->foto,
         // 'sertifikat' => $request->sertifikat,
     // ]);
+
+    //SPPD
+         // 'no_sppd' => $request->no_sppd,
+                // 'hal_tugas' => $request->hal_tugas,
+                // 'tgl_tugas' => $request->tgl_tugas,
+                // 'nm_ketua' => $request->nm_ketua,
+                // 'nm_anggota_1' => $request->nm_anggota_1,
+                // 'nm_anggota_2' => $request->nm_anggota_2,
+                // 'nm_anggota_3' => $request->nm_anggota_3,
+                // 'nm_anggota_4' => $request->nm_anggota_4,
