@@ -21,10 +21,7 @@
                 </div>
             </div>
         @endif --}}
-                
-            
-            
-                <!-- Modal body -->
+            <!-- Modal body -->
             <form action="/dashboard" method="POST">
                 @csrf
                 {{-- SPPD --}}
