@@ -49,7 +49,7 @@
                       src="{{ $kapal->inspektur->avatar ? asset('storage/' . $kapal->inspektur->avatar) : asset('img/default-avatar.png') }}" alt="{{ $kapal->nama_kapal }}" /> --}}
                    
                       <span class=" mt-4 font-medium text-xs dark:text-white">
-                         Validity period: {{ $kapal->tgl_inspeksi}}
+                         Validity period: {{ $kapal->masa_berlaku}}
                       </span>
                   </div></a>
                   <a href="/kapals/{{ $kapal->id }}" class="inline-flex text-xs items-center font-medium text-primary-600 dark:text-primary-500 hover:underline">
