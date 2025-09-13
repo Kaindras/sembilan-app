@@ -14,7 +14,7 @@
                         </div>
                           
                           <p class="text-base text-gray-900 dark:text-gray-400">Pemilik : {{ $kapal->pemilik->nm_pemilik }}</p>
-                          <p class="text-base text-gray-500 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022">Alamat : {{ $kapal->pemilik->alamat }}</time></p>
+                          <p class="text-base text-gray-500 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022">Nomor Izin : {{ $kapal->pemilik->siup }}</time></p>
                           <p class="text-base text-gray-500 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022">Tanggal Inspeksi : {{ $kapal->tgl_inspeksi }}</time></p>
                           <p class="text-base text-gray-500 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022">Petugas Inspeksi :1. {{ $kapal->sppd->nm_ketua }}</time></p>
                           <p class="text-base text-gray-500 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022">Petugas Inspeksi :2. {{ $kapal->sppd->nm_anggota_1 }}</time></p>
