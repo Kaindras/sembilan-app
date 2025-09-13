@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('nm_pemilik')->nullable();
             $table->string('siup')->nullable();
-            $table->string('sipi_sikpi')->nullable();
-            $table->date('tgl_sipi_sikpi')->nullable();
             $table->string('alamat')->nullable();
             $table->string('wpp')->nullable();
             $table->string('dpi')->nullable();
