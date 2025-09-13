@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('tgl_pelatihan')->nullable();
             $table->foreignId('kapal_id')->constrained(
                 table: 'kapals',
-                indexName: 'kapal_id')->nullable();
+                indexName: 'kapal_id')->nullable()->onDelete('cascade');
 
             $table->timestamps();
         });

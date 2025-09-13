@@ -13,13 +13,13 @@
                         <img class="h-auto max-w-xs rounded-lg" src="{{ asset('storage/' . $kapal->foto) }}" alt="{{ $kapal->nama_kapal}}" id="foto-preview">
                         </div>
                           
-                          <p class="text-base text-gray-900 dark:text-gray-400">Pemilik : {{ $kapal->pemilik->nama }}</p>
+                          <p class="text-base text-gray-900 dark:text-gray-400">Pemilik : {{ $kapal->pemilik->nm_pemilik }}</p>
                           <p class="text-base text-gray-500 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022">Alamat : {{ $kapal->pemilik->alamat }}</time></p>
                           <p class="text-base text-gray-500 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022">Tanggal Inspeksi : {{ $kapal->tgl_inspeksi }}</time></p>
-                          <p class="text-base text-gray-500 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022">Petugas Inspeksi :1. {{ $kapal->inspektur->name }}</time></p>
-                          <p class="text-base text-gray-500 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022">Petugas Inspeksi :2. {{ $kapal->inspektur->name }}</time></p>
-                          <p class="text-base text-gray-500 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022">Petugas Inspeksi :3. {{ $kapal->inspektur->name }}</time></p>
-                          <p class="text-base text-gray-500 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022">Petugas Inspeksi :4. {{ $kapal->inspektur->name }}</time></p>
+                          <p class="text-base text-gray-500 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022">Petugas Inspeksi :1. {{ $kapal->sppd->nm_ketua }}</time></p>
+                          <p class="text-base text-gray-500 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022">Petugas Inspeksi :2. {{ $kapal->sppd->nm_anggota_1 }}</time></p>
+                          <p class="text-base text-gray-500 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022">Petugas Inspeksi :3. {{ $kapal->sppd->nm_anggota_2 }}</time></p>
+                          <p class="text-base text-gray-500 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022">Petugas Inspeksi :4. {{ $kapal->sppd->nm_anggota_3 }}</time></p>
                           
                       </div>
                   </div>
@@ -32,19 +32,30 @@
           </p> --}}
           <table>
               <tbody>
-                  <tr>
-                    <td><strong>Nama Kapal</strong></td>
+                    <tr>
+                        <td><strong>Nama Kapal</strong></td>
                       <td>{{ $kapal->nama_kapal }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>No Izin</strong></td>
+                      <td>{{ $kapal->no_izin }}</td>
                     </tr>
                     
                     <tr>
-                    <td><strong>Sertifikat</strong></td>
+                    <td><strong>Nomor Sertifikat</strong></td>
                     <td>{{ $kapal->no_sertifikat }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Download Sertifikat</strong></td>
+                        <td>
+            @if($kapal->sertifikat)
+            <a href="{{ asset('storage/' . $kapal->sertifikat) }}" target="_blank">Lihat Sertifikat (PDF)</a>
+             @endif</td>
                     </tr>
 
                 <tr>
                     <td><strong>Masa Berlaku</strong></td>
-                    <td>{{ $kapal->no_sertifikat }}</td>
+                    <td>{{ $kapal->masa_berlaku }}</td>
                 </tr>
 
                     <tr>
@@ -53,22 +64,22 @@
                     </tr>
                     <tr>
                     <td><strong>Awak Kapal Bersertifikat CPIB Awak Kapal</strong></td>
-                    <td>{{ $kapal->grade }}</td>
+                    <td>{{ $kapal->sertifikat_abk }}</td>
                     </tr>
 
                     <tr>
-                    <td><strong>Memilik Personil Tetap Penanggung Jawab Mutu (QA)</strong></td>
-                    <td>{{ $kapal->grade }}</td>
+                    <td><strong>Memiliki Personil Tetap Penanggung Jawab Mutu (QA)</strong></td>
+                    <td>{{ $kapal->sertifikat_qa}}</td>
                     </tr>
 
                     <tr>
                     <td><strong>Mempunyai Manual HACPP</strong></td>
-                    <td>{{ $kapal->grade }}</td>
+                    <td>{{ $kapal->manual_haccp }}</td>
                     </tr>
 
                     <tr>
                      <td><strong>Ukuran Kapal</strong></td>
-                    <td>{{ $kapal->ukuran}} GT </td>
+                    <td>{{ $kapal->ukuran_kapal}} GT </td>
                     </tr>
                   
                      <tr>
@@ -85,11 +96,11 @@
                 </tr>
                 <tr>
                      <td><strong> Hasil Tangkapan</strong></td>
-                    <td>Fresh / Frozen {{ $kapal->jenis_ikan}}</td>
+                    <td>Fresh / Frozen {{ $kapal->hasil_tangkap}}</td>
                 </tr>
                 <tr>
                      <td><strong>Suhu Produk</strong></td>
-                    <td> -{{ $kapal->suhu}} Celcius</td>
+                    <td> -{{ $kapal->suhu_produk}} Celcius</td>
                 </tr>
                      <tr>
                      <td><strong>Suhu Palka</strong></td>
@@ -101,47 +112,38 @@
                     </tr>
                      <tr>
                      <td><strong>Estimasi Berat</strong></td>
-                    <td>{{ $kapal->estimasi_berat}}</td>
+                    <td>{{ $kapal->estimasi_berat}} Ton</td>
+                    </tr>
+                     <tr>
+                     <td><strong>Jenis Produk</strong></td>
+                    <td>{{ $kapal->jenis_produk }}</td>
                     </tr>
                      <tr>
                      <td><strong>Jenis Kapal</strong></td>
-                    <td>{{ $kapal->tipe_kapal}}</td>
+                    <td>{{ $kapal->jenis_kapal}}</td>
                     </tr>
-                     <tr>
-                     <td><strong>Tanggal_inspeksi</strong></td>
-                    <td>{{ $kapal->tanggal_inspeksi}}</td>
-                    </tr>
+                  
                     
                 <tr>
                     <td><strong>Pelabuhan Domisili (Asal)</strong></td>
-                    <td>{{ $kapal->pelabuhan_pangkalan}}</td>
+                    <td>{{ $kapal->pelabuhan_domisili }}</td>
                 </tr>
                 <tr>
-                    <td><strong>Izin Pelabuhan Pangakalan (Sandar) 1. </strong></td>
-                    <td>{{ $kapal->pelabuhan_pangkalan}}</td>
-                </tr>
-
-                   <tr>
-                    <td><strong>Izin Pelabuhan Pangakalan (Sandar) 2. </strong></td>
-                    <td>{{ $kapal->pelabuhan_pangkalan}}</td>
+                    <td><strong>Izin Pelabuhan Pangakalan (Sandar) </strong></td>
+                     <td>{{ $kapal->pelabuhan_sandar_1 }} - {{ $kapal->pelabuhan_sandar_2 }}</td>
                 </tr>
                      <tr>
                      <td><strong>Status Akfif</strong></td>
                     <td>{{ $kapal->kapal_aktif}}</td>
                     </tr>
-
+                       <tr>
+                    <td><strong>Tanggal_inspeksi</strong></td>
+                    <td>{{ $kapal->tgl_inspeksi}}</td>
+                    </tr>
                      {{-- <tr>
-                     <td><strong>Uraian</strong></td>
-                    <td>{{ $kapal->uraian}}</td>
-                    </tr>
-                    <tr>
-                     <td><strong>Catatan Inspeksi</strong></td>
-                    <td>{{ $kapal->catatan}}</td>
-                    </tr> --}}
-                     <tr>
                      <td><strong>Petugas Inspeksi</strong></td>
-                    <td>{{ $kapal->inspektur->name}}</td>
-                    </tr>
+                    <td>{{ $kapal->sppd->nm_ketua}}</td>
+                    </tr> --}}
                
                       
                     

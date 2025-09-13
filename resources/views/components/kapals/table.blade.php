@@ -52,6 +52,7 @@
                             <th scope="col" class="px-4 py-3">Nama Kapal</th>
                             <th scope="col" class="px-4 py-3">Pemilik</th>
                             <th scope="col" class="px-4 py-3">Tanggal Inspeksi</th>
+                            {{-- <th scope="col" class="px-4 py-3">Tanggal SPPD</th> --}}
                             <th scope="col" class="px-4 py-3">
                                 <span class="sr-only">Actions</span>
                             </th>
@@ -62,8 +63,9 @@
                         <tr class="border-b dark:border-gray-700">
                             <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $loop->iteration }}</th>
                             <td class="px-4 py-3">{{ $kapal->nama_kapal }}</td>
-                            <td class="px-4 py-3">{{ $kapal->pemilik->nama }}</td>
+                            <td class="px-4 py-3">{{ $kapal->pemilik->nm_pemilik }}</td>
                             <td class="px-4 py-3 max-w-[12rem] truncate">{{ $kapal->tgl_inspeksi }}</td>
+                            {{-- <td class="px-4 py-3 max-w-[12rem] truncate">{{ $kapal->sppd->tgl_sppd }}</td> --}}
                             <td class="px-4 py-3 flex items-center justify-end">
                                 <button id="kapal-{{ $kapal->id }}-dropdown-button" data-dropdown-toggle="kapal-{{ $kapal->id }}-dropdown" class="inline-flex items-center text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700 p-1.5 dark:hover-bg-gray-800 text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100" type="button">
                                     <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

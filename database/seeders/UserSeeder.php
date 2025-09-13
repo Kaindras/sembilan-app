@@ -24,6 +24,25 @@ class UserSeeder extends Seeder
             'color' => 'bg-green-100',
             'remember_token' => Str::random(10),
             ]);
+        User::factory()->create([
+            'name' => 'Ni Putu Sinta Berliana, S.Si',
+            'username' => 'sinta',
+            'email_verified_at' => now(),
+            'email' => 'sinta@gmail.com',
+            'password' =>Hash::make('admin2'),
+            'color' => 'bg-green-100',
+            'remember_token' => Str::random(10),
+            ]);
+
+             User::factory()->create([
+            'name' => 'Anjali Nur Shoimah',
+            'username' => 'anjali',
+            'email_verified_at' => now(),
+            'email' => 'anjali@gmail.com',
+            'password' =>Hash::make('admin3'),
+            'color' => 'bg-yellow-100',
+            'remember_token' => Str::random(10),
+            ]);
         User::create([
             'name' => 'Ni Desak Nyoman Pradnyani',
             'username' => 'pradnyani',
@@ -38,8 +57,8 @@ class UserSeeder extends Seeder
             'username' => 'wijasari',
             'email' => 'wijasari@gmail.com',
             'email_verified_at' => now(),
-            'password' =>Hash::make('inspector1'),
-            'color' => 'bg-blue-100',
+            'password' =>Hash::make('verifikator2'),
+            'color' => 'bg-red-100',
             'remember_token' => Str::random(10),
             ]);
            

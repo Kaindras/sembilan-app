@@ -54,13 +54,13 @@ class KapalController extends Controller
                 $sppd = Sppd::create([
                 'no_sppd' => $request->no_sppd,
                 ]);
-                $pemilik = Pemilik::create([
-                    'nm_pemilik' => $request->nm_pemilik,
-                ]);
+                // $pemilik = Pemilik::create([
+                // 'nm_pemilik' => $request->nm_pemilik,
+                // ]);
 
                 $kapal = Kapal::create([
                 'sppd_id'    => $sppd->id,
-                'pemilik_id'    => $pemilik->id,
+                'pemilik_id'    => $request->pemilik_id,
                 'nama_kapal' => $request->nama_kapal,
                 'inspektur_id' => Auth::user()->id, // benar
             ]);
@@ -97,58 +97,75 @@ class KapalController extends Controller
 
 public function update(Request $request, Kapal $kapal)
 {
-    $request->validate([
-        'pemilik_id'        => 'required|exists:pemiliks,id',
-        'nama_kapal'        => 'required|unique:kapals,nama_kapal,' . $kapal->id,
-        'no_sertifikat'     => 'required|unique:kapals,no_sertifikat,' . $kapal->id,
+        $request->validate([
+        'no_izin'           => 'required|string',
+        'no_sertifikat'     => 'required|unique:kapals, no_sertifikat,' . $kapal->id,
+        'masa_berlaku'      => 'required|date',
         'grade'             => 'required|string|max:1',
-        'ukuran'            => 'required|alpha_num',
-        'daerah_tangkap'    => 'required|string',
-        'alat_tangkap'      => 'required|string',
-        'lama_trip'         => 'required|alpha_num',
-        'jenis_ikan'        => 'required|string',
-        'penanganan'        => 'required|string',
-        'suhu'              => 'required|alpha_num',
-        'suhu_palka'        => 'required|alpha_num',
-        'nilai_organoleptik'=> 'required|alpha_num',
-        'estimasi_berat'    => 'required|alpha_num',
-        'tipe_kapal'        => 'required|string',
-        'tgl_inspeksi'      => 'required|date',
-        'pelabuhan_pangkalan'=> 'required|string',
-        'kapal_aktif'       => 'required|string',
-        'uraian'            => 'required|string',
-        'catatan'           => 'required|string',
+        'sertifikat_abk'    => 'required|string',
+        'sertifikat_qa'    =>  'required|string',
+        'manual_haccp'      => 'required',
+        'ukuran_kapal'      => 'required',
+        'daerah_tangkap'    => 'required',
+        'lama_trip'         => 'required',
+        'alat_tangkap'      => 'required',
+        'hasil_tangkap'     => 'required',
+        'suhu_produk'       => 'required',
+        'suhu_palka'        => 'required',
+        'nilai_organoleptik'=> 'required',
+        'jenis_produk'      => 'required',
+        'estimasi_berat'    => 'required',
+        'jenis_kapal'        => 'required',
+        'pelabuhan_domisili' => 'required',
+        'pelabuhan_sandar_1' => 'required',
+        'pelabuhan_sandar_2' => 'required',
+        'kapal_aktif'       => 'required',
+        'tgl_inspeksi'      => 'required',
         'foto'              => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
         'sertifikat'        => 'nullable|file|mimes:pdf|max:5120', // max 5MB
-    ], [
+
+         ], [
         'required' => 'Field :attribute ini harus diisi!',
         'unique'   => 'Field :attribute harus unik!',
     ]);
 
     // ✅ Update field teks
     $kapal->update([
-        'nama_kapal'        => $request->nama_kapal,
+        'no_izin'           => $request->no_izin,
         'no_sertifikat'     => $request->no_sertifikat,
+        'masa_berlaku'      => $request->masa_berlaku,
         'grade'             => $request->grade,
-        'pemilik_id'        => $request->pemilik_id,
-        'inspektur_id'      => Auth::user()->id, // user login
-        'ukuran'            => $request->ukuran,
+        'sertifikat_abk'    => $request->sertifikat_abk,
+        'sertifikat_qa'    => $request->sertifikat_qa,
+        'manual_haccp'      => $request->manual_haccp,
+        'ukuran_kapal'      => $request->ukuran_kapal,
         'daerah_tangkap'    => $request->daerah_tangkap,
-        'alat_tangkap'      => $request->alat_tangkap,
         'lama_trip'         => $request->lama_trip,
-        'jenis_ikan'        => $request->jenis_ikan,
-        'penanganan'        => $request->penanganan,
-        'suhu'              => $request->suhu,
+        'alat_tangkap'      => $request->alat_tangkap,
+        'hasil_tangkap'     => $request->hasil_tangkap,
+        'suhu_produk'       => $request->suhu_produk,
         'suhu_palka'        => $request->suhu_palka,
         'nilai_organoleptik'=> $request->nilai_organoleptik,
         'estimasi_berat'    => $request->estimasi_berat,
-        'tipe_kapal'        => $request->tipe_kapal,
-        'tgl_inspeksi'      => $request->tgl_inspeksi,
-        'pelabuhan_pangkalan'=> $request->pelabuhan_pangkalan,
+        'jenis_produk'        => $request->jenis_produk,
+        'jenis_kapal'        => $request->jenis_kapal,
+        'pelabuhan_domisili' => $request->pelabuhan_domisili, 
+        'pelabuhan_sandar_1' => $request->pelabuhan_sandar_1, 
+        'pelabuhan_sandar_2' => $request->pelabuhan_sandar_2, 
         'kapal_aktif'       => $request->kapal_aktif,
-        'uraian'            => $request->uraian,
-        'catatan'           => $request->catatan,
+        'tgl_inspeksi'      => $request->tgl_inspeksi,
     ]);
+    if ($request->has('abks')) {
+        foreach ($request->abks as $abk_id => $abk) {
+            $abk = Abk::find($abk_id);
+
+            if ($abk && $abk->kapal_id == $kapal->id) {
+                $abk->update([
+                    'tgl_pelatihan' => $abk['tgl_pelatihan'],
+                ]);
+            }
+        }
+    }
 
     // ✅ Update Foto
     if ($request->hasFile('foto')) {
