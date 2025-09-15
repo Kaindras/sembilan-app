@@ -40,7 +40,7 @@ class KapalController extends Controller
     public function store(Request $request)
     {
         Validator::make($request->all(), [
-            'no_sppd'    => 'required|string|unique:sppds,no_sppd',
+            'no_sppd'    => 'required|string',
             // 'nm_ketua'  => 'string',
             // 'nm_anggota_1' => 'string',
             // 'nm_anggota_2' => 'string',
