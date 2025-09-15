@@ -29,8 +29,8 @@ class KapalController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {  
-        $kapals = Kapal::with(['sppd','pemilik','inspektur','abk'])->get();
+    {
+        $kapals = Kapal::with(['sppd', 'pemilik', 'inspektur', 'abk'])->get();
         return view('dashboard.create', ['kapals' => $kapals]);
     }
 
@@ -38,39 +38,39 @@ class KapalController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {   
-         Validator::make($request->all(), [
-        'no_sppd'    => 'required|string|unique:sppds,no_sppd',
-        // 'pemilik_id' => 'required|integer',
-        // 'nm_pemilik' => 'required|string',
-        'nama_kapal' => 'required|string|unique:kapals,nama_kapal',
-        // 'nama_abk'   => 'required|string',
-    ], [
-        'required' => 'field :attribute ini harus di isi!',
-        'unique' => 'feld :attribute harus unik!',
-   
-    ])->validate();
+    {
+        Validator::make($request->all(), [
+            'no_sppd'    => 'required|string|unique:sppds,no_sppd',
+            // 'pemilik_id' => 'required|integer',
+            // 'nm_pemilik' => 'required|string',
+            'nama_kapal' => 'required|string|unique:kapals,nama_kapal',
+            // 'nama_abk'   => 'required|string',
+        ], [
+            'required' => 'field :attribute ini harus di isi!',
+            'unique' => 'feld :attribute harus unik!',
 
-                $sppd = Sppd::create([
-                'no_sppd' => $request->no_sppd,
-                ]);
-                // $pemilik = Pemilik::create([
-                // 'nm_pemilik' => $request->nm_pemilik,
-                // ]);
+        ])->validate();
 
-                $kapal = Kapal::create([
-                'sppd_id'    => $sppd->id,
-                'pemilik_id'    => $request->pemilik_id,
-                'nama_kapal' => $request->nama_kapal,
-                'inspektur_id' => Auth::user()->id, // benar
-            ]);
+        $sppd = Sppd::create([
+            'no_sppd' => $request->no_sppd,
+        ]);
+        // $pemilik = Pemilik::create([
+        // 'nm_pemilik' => $request->nm_pemilik,
+        // ]);
 
-            Abk::create([
+        $kapal = Kapal::create([
+            'sppd_id'    => $sppd->id,
+            'pemilik_id'    => $request->pemilik_id,
+            'nama_kapal' => $request->nama_kapal,
+            'inspektur_id' => Auth::user()->id, // benar
+        ]);
+
+        Abk::create([
             'kapal_id' => $kapal->id, // <-- yang benar
-]);
-        
-    return redirect('/dashboard')->with(['success'=> 'Data kamu berhasil disimpan']);
-}
+        ]);
+
+        return redirect('/dashboard')->with(['success' => 'Data kamu berhasil disimpan']);
+    }
 
 
     /**
@@ -78,8 +78,8 @@ class KapalController extends Controller
      */
     public function show(Kapal $kapal)
     {
-     
-       return view('dashboard.show', ['kapal' => $kapal]);
+
+        return view('dashboard.show', ['kapal' => $kapal]);
     }
 
     /**
@@ -95,106 +95,106 @@ class KapalController extends Controller
      */
 
 
-public function update(Request $request, Kapal $kapal)
-{
+    public function update(Request $request, Kapal $kapal)
+    {
         $request->validate([
-        'no_izin'           => 'required|string',
-        'no_sertifikat'     => 'required|unique:kapals, no_sertifikat,' . $kapal->id,
-        'masa_berlaku'      => 'required|date',
-        'grade'             => 'required|string|max:1',
-        'sertifikat_abk'    => 'required|string',
-        'sertifikat_qa'    =>  'required|string',
-        'manual_haccp'      => 'required',
-        'ukuran_kapal'      => 'required',
-        'daerah_tangkap'    => 'required',
-        'lama_trip'         => 'required',
-        'alat_tangkap'      => 'required',
-        'hasil_tangkap'     => 'required',
-        'suhu_produk'       => 'required',
-        'suhu_palka'        => 'required',
-        'nilai_organoleptik'=> 'required',
-        'jenis_produk'      => 'required',
-        'estimasi_berat'    => 'required',
-        'jenis_kapal'        => 'required',
-        'pelabuhan_domisili' => 'required',
-        'pelabuhan_sandar_1' => 'required',
-        'pelabuhan_sandar_2' => 'required',
-        'kapal_aktif'       => 'required',
-        'tgl_inspeksi'      => 'required',
-        'foto'              => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
-        'sertifikat'        => 'nullable|file|mimes:pdf|max:5120', // max 5MB
+            'no_izin'           => 'required|string',
+            'no_sertifikat'     => 'required|unique:kapals, no_sertifikat,' . $kapal->id,
+            'masa_berlaku'      => 'required|date',
+            'grade'             => 'required|string|max:1',
+            // 'sertifikat_abk'    => 'required|string',
+            // 'sertifikat_qa'    =>  'required|string',
+            // 'manual_haccp'      => 'required',
+            'ukuran_kapal'      => 'required',
+            // 'daerah_tangkap'    => 'required',
+            // 'lama_trip'         => 'required',
+            'alat_tangkap'      => 'required',
+            // 'hasil_tangkap'     => 'required',
+            // 'suhu_produk'       => 'required',
+            // 'suhu_palka'        => 'required',
+            // 'nilai_organoleptik'=> 'required',
+            'jenis_produk'      => 'required',
+            // 'estimasi_berat'    => 'required',
+            // 'jenis_kapal'        => 'required',
+            'pelabuhan_domisili' => 'required',
+            // 'pelabuhan_sandar_1' => 'required',
+            // 'pelabuhan_sandar_2' => 'required',
+            // 'kapal_aktif'       => 'required',
+            'tgl_inspeksi'      => 'required',
+            'foto'              => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+            'sertifikat'        => 'nullable|file|mimes:pdf|max:5120', // max 5MB
 
-         ], [
-        'required' => 'Field :attribute ini harus diisi!',
-        'unique'   => 'Field :attribute harus unik!',
-    ]);
+        ], [
+            'required' => 'Field :attribute ini harus diisi!',
+            'unique'   => 'Field :attribute harus unik!',
+        ]);
 
-    // ✅ Update field teks
-    $kapal->update([
-        'no_izin'           => $request->no_izin,
-        'no_sertifikat'     => $request->no_sertifikat,
-        'masa_berlaku'      => $request->masa_berlaku,
-        'grade'             => $request->grade,
-        'sertifikat_abk'    => $request->sertifikat_abk,
-        'sertifikat_qa'    => $request->sertifikat_qa,
-        'manual_haccp'      => $request->manual_haccp,
-        'ukuran_kapal'      => $request->ukuran_kapal,
-        'daerah_tangkap'    => $request->daerah_tangkap,
-        'lama_trip'         => $request->lama_trip,
-        'alat_tangkap'      => $request->alat_tangkap,
-        'hasil_tangkap'     => $request->hasil_tangkap,
-        'suhu_produk'       => $request->suhu_produk,
-        'suhu_palka'        => $request->suhu_palka,
-        'nilai_organoleptik'=> $request->nilai_organoleptik,
-        'estimasi_berat'    => $request->estimasi_berat,
-        'jenis_produk'        => $request->jenis_produk,
-        'jenis_kapal'        => $request->jenis_kapal,
-        'pelabuhan_domisili' => $request->pelabuhan_domisili, 
-        'pelabuhan_sandar_1' => $request->pelabuhan_sandar_1, 
-        'pelabuhan_sandar_2' => $request->pelabuhan_sandar_2, 
-        'kapal_aktif'       => $request->kapal_aktif,
-        'tgl_inspeksi'      => $request->tgl_inspeksi,
-    ]);
-    if ($request->has('abks')) {
-        foreach ($request->abks as $abk_id => $abk) {
-            $abk = Abk::find($abk_id);
+        // ✅ Update field teks
+        $kapal->update([
+            'no_izin'           => $request->no_izin,
+            'no_sertifikat'     => $request->no_sertifikat,
+            'masa_berlaku'      => $request->masa_berlaku,
+            'grade'             => $request->grade,
+            'sertifikat_abk'    => $request->sertifikat_abk,
+            'sertifikat_qa'    => $request->sertifikat_qa,
+            'manual_haccp'      => $request->manual_haccp,
+            'ukuran_kapal'      => $request->ukuran_kapal,
+            'daerah_tangkap'    => $request->daerah_tangkap,
+            'lama_trip'         => $request->lama_trip,
+            'alat_tangkap'      => $request->alat_tangkap,
+            'hasil_tangkap'     => $request->hasil_tangkap,
+            'suhu_produk'       => $request->suhu_produk,
+            'suhu_palka'        => $request->suhu_palka,
+            'nilai_organoleptik' => $request->nilai_organoleptik,
+            'estimasi_berat'    => $request->estimasi_berat,
+            'jenis_produk'        => $request->jenis_produk,
+            'jenis_kapal'        => $request->jenis_kapal,
+            'pelabuhan_domisili' => $request->pelabuhan_domisili,
+            'pelabuhan_sandar_1' => $request->pelabuhan_sandar_1,
+            'pelabuhan_sandar_2' => $request->pelabuhan_sandar_2,
+            'kapal_aktif'       => $request->kapal_aktif,
+            'tgl_inspeksi'      => $request->tgl_inspeksi,
+        ]);
+        if ($request->has('abks')) {
+            foreach ($request->abks as $abk_id => $abk) {
+                $abk = Abk::find($abk_id);
 
-            if ($abk && $abk->kapal_id == $kapal->id) {
-                $abk->update([
-                    'tgl_pelatihan' => $abk['tgl_pelatihan'],
-                ]);
+                if ($abk && $abk->kapal_id == $kapal->id) {
+                    $abk->update([
+                        'tgl_pelatihan' => $abk['tgl_pelatihan'],
+                    ]);
+                }
             }
         }
-    }
 
-    // ✅ Update Foto
-    if ($request->hasFile('foto')) {
-        if ($kapal->foto && Storage::disk(config('filesystems.default_public_disk'))->exists($kapal->foto)) {
-            Storage::disk(config('filesystems.default_public_disk'))->delete($kapal->foto);
+        // ✅ Update Foto
+        if ($request->hasFile('foto')) {
+            if ($kapal->foto && Storage::disk(config('filesystems.default_public_disk'))->exists($kapal->foto)) {
+                Storage::disk(config('filesystems.default_public_disk'))->delete($kapal->foto);
+            }
+            $file = $request->file('foto');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('img', $filename, config('filesystems.default_public_disk'));
+            $kapal->foto = $path;
         }
-        $file = $request->file('foto');
-        $filename = time() . '_' . $file->getClientOriginalName();
-        $path = $file->storeAs('img', $filename, config('filesystems.default_public_disk'));
-        $kapal->foto = $path;
-    }
 
-    // ✅ Update Sertifikat
-    if ($request->hasFile('sertifikat')) {
-        
-        if ($kapal->sertifikat && Storage::disk(config('filesystems.default_public_disk'))->exists($kapal->sertifikat)) {
-            Storage::disk(config('filesystems.default_public_disk'))->delete($kapal->sertifikat);
+        // ✅ Update Sertifikat
+        if ($request->hasFile('sertifikat')) {
+
+            if ($kapal->sertifikat && Storage::disk(config('filesystems.default_public_disk'))->exists($kapal->sertifikat)) {
+                Storage::disk(config('filesystems.default_public_disk'))->delete($kapal->sertifikat);
+            }
+            $file = $request->file('sertifikat');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('doc', $filename, config('filesystems.default_public_disk'));
+            $kapal->sertifikat = $path;
         }
-        $file = $request->file('sertifikat');
-        $filename = time() . '_' . $file->getClientOriginalName();
-        $path = $file->storeAs('doc', $filename, config('filesystems.default_public_disk'));
-        $kapal->sertifikat = $path;
+
+
+        $kapal->save();
+
+        return redirect('/dashboard')->with(['success' => 'Data kapal berhasil diupdate!']);
     }
-
-
-    $kapal->save();
-
-    return redirect('/dashboard')->with(['success' => 'Data kapal berhasil diupdate!']);
-}
 
 
     /**
