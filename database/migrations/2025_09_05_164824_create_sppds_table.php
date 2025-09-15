@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('nm_anggota_3')->nullable();
             $table->string('nm_anggota_4')->nullable();
             $table->timestamps();
-
         });
     }
 

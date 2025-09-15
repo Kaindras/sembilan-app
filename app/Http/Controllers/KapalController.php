@@ -48,7 +48,7 @@ class KapalController extends Controller
             // 'nm_anggota_4' => 'string',
             'pemilik_id' => 'required|integer',
             'nm_pemilik' => 'required|string',
-            'nama_kapal' => 'required|string|unique:kapals,nama_kapal',
+            'nama_kapal' => 'required|string',
             // 'nama_abk'   => 'required|string',
         ], [
             'required' => 'field :attribute ini harus di isi!',
@@ -105,10 +105,11 @@ class KapalController extends Controller
      */
 
 
-    public function update(Request $request, Kapal $kapal)
+    public function update(Request $request, Kapal $kapal, Sppd $sppd)
     {
         $request->validate([
-            'nama_kapal'        => 'required|string',
+            'no_sppd'           => 'required|string|',
+            'nama_kapal'        => 'required|string|unique:kapals, nama_kapal,' . $kapal->id,
             'no_izin'           => 'required|string',
             'no_sertifikat'     => 'required|unique:kapals, no_sertifikat,' . $kapal->id,
             'masa_berlaku'      => 'required|date',
@@ -142,6 +143,7 @@ class KapalController extends Controller
 
         // ✅ Update field teks
         $kapal->update([
+            'nama_kapal'        => $request->nama_kapal,
             'no_izin'           => $request->no_izin,
             'no_sertifikat'     => $request->no_sertifikat,
             'masa_berlaku'      => $request->masa_berlaku,
@@ -166,6 +168,18 @@ class KapalController extends Controller
             'kapal_aktif'       => $request->kapal_aktif,
             'tgl_inspeksi'      => $request->tgl_inspeksi,
         ]);
+        // if ($request->has('sppd')) {
+        //     foreach ($request->sppd as $sppd_id => $sppd) {
+        //         $sppd = Sppd::find($sppd_id);
+
+        //         if ($sppd && $sppd->kapal_id == $kapal->id) {
+        //             $sppd->update([
+        //                 'no_sppd' => $sppd['no_sppd'],
+        //             ]);
+        //         }
+        //     }
+        // }
+
         if ($request->has('abks')) {
             foreach ($request->abks as $abk_id => $abk) {
                 $abk = Abk::find($abk_id);

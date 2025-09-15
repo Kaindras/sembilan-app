@@ -21,7 +21,7 @@ Route::get('/kapals', function () {
         'title' => 'Report',
         'kapals' => Kapal::first()
             ->filter(request(['search', 'kapal', 'inspektur', 'pemilik']))
-            ->paginate(5)
+            ->paginate(6)
             ->withQueryString()
     ]);
 });
