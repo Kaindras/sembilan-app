@@ -5,7 +5,7 @@
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Add Vessel</h3>
             </div>
             {{-- Validate Message --}}
-        {{-- @if ($errors->any())
+            {{-- @if ($errors->any())
             <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
                 <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
@@ -14,7 +14,7 @@
                 <div>
                     <span class="font-medium">Ensure that these requirements are met:</span>
                     <ul class="mt-1.5 list-disc list-inside">
-                       @foreach ($errors->all() as $error )
+                       @foreach ($errors->all() as $error)
                            <li>{{ $error }}</li>
                        @endforeach
                     </ul>
@@ -25,58 +25,102 @@
             <form action="/dashboard" method="POST">
                 @csrf
 
-                    <div class="mb-4">
-                        <label for="no_sppd" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor SPPD</label>
-                        <input type="text" name="no_sppd" id="no_sppd" class="@error('no_sppd') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type vessel" value="{{ old('no_sppd') }}">
-                        @error('no_sppd')
-                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
-                    </div> 
+                <div class="mb-4">
+                    <label for="no_sppd" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor
+                        SPPD</label>
+                    <input type="text" name="no_sppd" id="no_sppd"
+                        class="@error('no_sppd') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        placeholder="Type No Sppd" value="{{ old('no_sppd') }}">
+                    @error('no_sppd')
+                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}
+                        </p>
+                    @enderror
+                </div>
+                {{-- No SPPD --}}
+                {{-- <div class="mb-4">
+                    <label for="no_sppd" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor
+                        SPPD</label>
+                    <input type="text" name="no_sppd" id="no_sppd"
+                        class="@error('no_sppd') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        placeholder="Type vessel" value="{{ old('no_sppd') }}">
+                    @error('no_sppd')
+                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}
+                        </p>
+                    @enderror
+                </div> --}}
+                {{-- Ketua Tim --}}
+                {{-- <div class="mb-4">
+                    <label for="nm_ketua" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ketua Tim
+                        SPPD</label>
+                    <input type="text" name="nm_ketua" id="nm_ketua"
+                        class="@error('nm_ketua') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        placeholder="Type vessel" value="{{ old('nm_ketua') }}">
+                    @error('nm_ketua')
+                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}
+                        </p>
+                    @enderror
+                </div> --}}
 
 
-            {{-- Data Pemilik --}}
-            <div class="mb-4">
-                <label for="pemilik_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Pemilik</label><select name="pemilik_id" id="pemilik_id" class="@error('pemilik_id') bg-red-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                    <option selected="" value="">Select name</option>
-                    @foreach (App\Models\Pemilik::get() as $pemilik )
-                    <option value="{{ $pemilik->id }}" @selected(old('pemilik_id') == $pemilik->id)>{{ $pemilik->nm_pemilik }}</option>
-                    @endforeach
+                {{-- Data Pemilik --}}
+                <div class="mb-4">
+                    <label for="pemilik_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
+                        Pemilik</label><select name="pemilik_id" id="pemilik_id"
+                        class="@error('pemilik_id') bg-red-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <option selected="" value="">Select name</option>
+                        @foreach (App\Models\Pemilik::get() as $pemilik)
+                            <option value="{{ $pemilik->id }}" @selected(old('pemilik_id') == $pemilik->id)>{{ $pemilik->nm_pemilik }}
+                            </option>
+                        @endforeach
                     </select>
                     @error('pemilik_id')
-                    <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span
+                                class="font-medium">{{ $message }}</span></p>
                     @enderror
-            </div>
-                    <div class="mb-4">
-                        <label for="nama_kapal" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Kapal</label>
-                        <input type="text" name="nama_kapal" id="nama_kapal" class="@error('nama_kapal') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type vessel" value="{{ old('nama_kapal') }}">
-                        @error('nama_kapal')
-                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
-                    </div> 
+                </div>
+                <div class="mb-4">
+                    <label for="nama_kapal" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
+                        Kapal</label>
+                    <input type="text" name="nama_kapal" id="nama_kapal"
+                        class="@error('nama_kapal') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        placeholder="Type vessel" value="{{ old('nama_kapal') }}">
+                    @error('nama_kapal')
+                        <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}
+                        </p>
+                    @enderror
+                </div>
 
 
                 <div class="flex gap-2">
-                <button type="submit" class="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                    <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
-                    </svg>
-                    Add new Vessel
-                </button>
-                <a href="/dashboard" class="inline-flex items-center text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
-                    <svg aria-hidden="true" class="w-5 h-5 mr-1.5 -ml-1" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-                    </svg>
-                    Cancel
-                </a>
+                    <button type="submit"
+                        class="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                        <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewbox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Add new Vessel
+                    </button>
+                    <a href="/dashboard"
+                        class="inline-flex items-center text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
+                        <svg aria-hidden="true" class="w-5 h-5 mr-1.5 -ml-1" fill="currentColor" viewbox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Cancel
+                    </a>
                 </div>
             </form>
         </div>
 
-                   
 
-   
 
-      {{-- SPPD
+
+
+        {{-- SPPD
             
             <div class="mb-4">
                         <label for="hal_tugas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor SPPD</label>

@@ -41,6 +41,11 @@ class KapalController extends Controller
     {
         Validator::make($request->all(), [
             'no_sppd'    => 'required|string|unique:sppds,no_sppd',
+            // 'nm_ketua'  => 'string',
+            // 'nm_anggota_1' => 'string',
+            // 'nm_anggota_2' => 'string',
+            // 'nm_angoota_3' => 'string',
+            // 'nm_anggota_4' => 'string',
             // 'pemilik_id' => 'required|integer',
             // 'nm_pemilik' => 'required|string',
             'nama_kapal' => 'required|string|unique:kapals,nama_kapal',
@@ -53,6 +58,11 @@ class KapalController extends Controller
 
         $sppd = Sppd::create([
             'no_sppd' => $request->no_sppd,
+            // 'nm_ketua'  => $request->nm_ketua,
+            // 'nm_anggota_1' => $request->nm_anggota_1,
+            // 'nm_anggota_2' => $request->nm_anggota_2,
+            // 'nm_angoota_3' => $request->nm_anggota_3,
+            // 'nm_anggota_4' => $request->nm_anggota_4,
         ]);
         // $pemilik = Pemilik::create([
         // 'nm_pemilik' => $request->nm_pemilik,
