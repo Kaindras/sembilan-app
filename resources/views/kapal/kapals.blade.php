@@ -29,7 +29,7 @@
         </form>
         {{ $kapals->links() }}
         <div class="mt-4 grid gap-8 lg:grid-cols-3 md:grid-cols-2">
-            @forelse ($kapals as $kapal)
+            @forelse($kapals as $kapal)
                 @if (!@empty($kapal->no_sertifikat))
                     <article
                         class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
