@@ -46,8 +46,8 @@ class KapalController extends Controller
             // 'nm_anggota_2' => 'string',
             // 'nm_angoota_3' => 'string',
             // 'nm_anggota_4' => 'string',
-            // 'pemilik_id' => 'required|integer',
-            // 'nm_pemilik' => 'required|string',
+            'pemilik_id' => 'required|integer',
+            'nm_pemilik' => 'required|string',
             'nama_kapal' => 'required|string|unique:kapals,nama_kapal',
             // 'nama_abk'   => 'required|string',
         ], [
