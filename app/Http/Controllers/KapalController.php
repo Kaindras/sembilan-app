@@ -108,6 +108,7 @@ class KapalController extends Controller
     public function update(Request $request, Kapal $kapal)
     {
         $request->validate([
+            'nama_kapal'        => 'required|string',
             'no_izin'           => 'required|string',
             'no_sertifikat'     => 'required|unique:kapals, no_sertifikat,' . $kapal->id,
             'masa_berlaku'      => 'required|date',
