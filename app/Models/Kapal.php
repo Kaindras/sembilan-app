@@ -19,7 +19,7 @@ class Kapal extends Model
     use HasFactory;
 
     protected $guarded = [];
-    protected $with = ['inspektur', 'pemilik', 'sppd','abk'];
+    protected $with = ['inspektur', 'pemilik', 'sppd', 'abk'];
 
     public function inspektur(): BelongsTo
     {
@@ -33,7 +33,7 @@ class Kapal extends Model
 
     public function sppd(): BelongsTo
     {
-        return $this->belongsTo(Sppd::class, 'sppd_id','id');
+        return $this->belongsTo(Sppd::class);
     }
 
     public function abk(): HasMany
@@ -44,8 +44,8 @@ class Kapal extends Model
     #[Scope]
     protected function scopeFilter(Builder $query, array $filters): void
     {
-        $query->when($filters['search'] ?? false, function($query , $search){
-           return $query->where('nama_kapal', 'like', '%' . $search .'%');
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            return $query->where('nama_kapal', 'like', '%' . $search . '%');
         });
 
         // $query->when($filters['pemilik'] ?? false, function($query , $pemilik){
@@ -53,8 +53,8 @@ class Kapal extends Model
         //    fn(Builder $query) =>
         //    $query->where('nama', $pemilik)
         // );
-        // });
 
+        // });
         // $query->when($filters['inspektur'] ?? false, function($query , $inspektur){
         //    return $query->whereHas('inspektur', 
         //    fn(Builder $query) =>
@@ -62,6 +62,4 @@ class Kapal extends Model
         // );
         // });
     }
- 
-    
 }

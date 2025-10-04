@@ -12,7 +12,7 @@ class Sppd extends Model
 {
     /** @use HasFactory<\Database\Factories\SppdFactory> */
     use HasFactory;
-    protected $guarded =[];
+    protected $guarded = [];
     public function kapal(): HasOne
     {
         return $this->hasOne(Kapal::class, 'sppd_id', 'id');

@@ -28,8 +28,6 @@
             </div>
         @endif --}}
                 
-            
-            
                 <!-- Modal body -->
             <form action="/dashboard/{{ $kapal->id }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -47,23 +45,24 @@
             </div> --}}
                <div class="mb-4">
                         <label for="no_sppd" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor SPPD</label>
-                        <input type="text" name="no_sppd" id="no_sppd" class="@error('no_sppd') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type vessel" autofocus value="{{ old('no_sppd') ?? $kapal->sppd->no_sppd }}">
+                        <input type="text" name="no_sppd" id="no_sppd" class="@error('no_sppd') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type vessel" autofocus value="{{ old('no_sppd') ?? $kapal->sppd->no_sppd }}" disabled>
                         @error('no_sppd')
                         <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
                         @enderror
                     </div> 
 
-                 <div class="mb-4">
+                      <div class="mb-4">
                         <label for="nm_pemilik" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Pemilik</label>
-                        <input type="text" name="nm_pemilik" id="nm_pemilik" class="@error('nm_pemilik') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="{{ $kapal->pemilik->nm_pemilik }}" autofocus value="{{ old('nm_pemilik') ?? $kapal->pemilik->nm_pemilik }}" disabled>
+                        <input type="text" name="nm_pemilik" id="nm_pemilik" class="@error('nm_pemilik') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type vessel" autofocus value="{{ old('nm_pemilik') ?? $kapal->pemilik->nm_pemilik }}" disabled>
                         @error('nm_pemilik')
                         <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
                         @enderror
                     </div> 
 
+
                     <div class="mb-4">
                         <label for="nama_kapal" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Kapal</label>
-                        <input type="text" name="nama_kapal" id="nama_kapal" class="@error('nama_kapal') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type vessel" autofocus value="{{ old('nama_kapal') ?? $kapal->nama_kapal }}">
+                        <input type="text" name="nama_kapal" id="nama_kapal" class="@error('nama_kapal') bg-red-50 bg-gray-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500 @enderror  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type vessel" autofocus value="{{ old('nama_kapal') ?? $kapal->nama_kapal }}" disabled>
                         @error('nama_kapal')
                         <p class="mt-2 text-xs text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
                         @enderror

@@ -19,7 +19,7 @@ Route::get('/charts', function () {
 Route::get('/kapals', function () {
     return view('kapal.kapals', [
         'title' => 'Report',
-        'kapals' => Kapal::first()
+        'kapals' => Kapal::latest()
             ->filter(request(['search', 'kapal', 'inspektur', 'pemilik']))
             ->paginate(6)
             ->withQueryString()

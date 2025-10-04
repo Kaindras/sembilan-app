@@ -40,37 +40,43 @@ class KapalController extends Controller
     public function store(Request $request)
     {
         Validator::make($request->all(), [
-            'no_sppd'    => 'required|string',
-            // 'nm_ketua'  => 'string',
-            // 'nm_anggota_1' => 'string',
-            // 'nm_anggota_2' => 'string',
-            // 'nm_angoota_3' => 'string',
-            // 'nm_anggota_4' => 'string',
-            'pemilik_id' => 'required|integer',
-            'nm_pemilik' => 'required|string',
-            'nama_kapal' => 'required|string',
-            // 'nama_abk'   => 'required|string',
+            'no_sppd'    => 'required|string|unique:sppds,no_sppd',
+            'tgl_sppd' => 'required|date',
+            'hal_tugas' => 'required',
+            'nm_ketua' => 'required',
+            'nm_anggota_1' => 'required',
+            'nm_anggota_2' => 'required',
+            'pemilik_id' => 'required|exists:pemiliks,id', // ambil dari select
+            'nama_kapal' => 'required|string|unique:kapals,nama_kapal',
+
         ], [
             'required' => 'field :attribute ini harus di isi!',
             'unique' => 'feld :attribute harus unik!',
 
         ])->validate();
-
         $sppd = Sppd::create([
+            // 'id' => $request->id,
             'no_sppd' => $request->no_sppd,
-            // 'nm_ketua'  => $request->nm_ketua,
-            // 'nm_anggota_1' => $request->nm_anggota_1,
-            // 'nm_anggota_2' => $request->nm_anggota_2,
-            // 'nm_angoota_3' => $request->nm_anggota_3,
-            // 'nm_anggota_4' => $request->nm_anggota_4,
+            'hal_tugas' => $request->hal_tugas,
+            'tgl_sppd' => $request->tgl_sppd,
+            'nm_ketua' => $request->nm_ketua,
+            'nm_anggota_1' => $request->nm_anggota_1,
+            'nm_anggota_2' => $request->nm_anggota_2,
+            'nm_anggota_3' => $request->nm_anggota_3,
+            'nm_anggota_4' => $request->nm_anggota_4,
+
         ]);
         // $pemilik = Pemilik::create([
-        // 'nm_pemilik' => $request->nm_pemilik,
+        //     'nm_pemilik' => $request->nm_pemilik,
+        // ]);
+
+        // $pemilik = Pemilik::create([
+        //     'nm_pemilik' => $request->nm_pemilik,
         // ]);
 
         $kapal = Kapal::create([
             'sppd_id'    => $sppd->id,
-            'pemilik_id'    => $request->pemilik_id,
+            'pemilik_id'  => $request->pemilik_id,
             'nama_kapal' => $request->nama_kapal,
             'inspektur_id' => Auth::user()->id, // benar
         ]);
@@ -108,30 +114,30 @@ class KapalController extends Controller
     public function update(Request $request, Kapal $kapal, Sppd $sppd)
     {
         $request->validate([
-            'no_sppd'           => 'required|string|',
-            'nama_kapal'        => 'required|string|unique:kapals, nama_kapal,' . $kapal->id,
+            // 'no_sppd'           => 'required|string|',
+            // 'nama_kapal'        => 'required|string|unique:kapals, nama_kapal,' . $kapal->id,
             'no_izin'           => 'required|string',
             'no_sertifikat'     => 'required|unique:kapals, no_sertifikat,' . $kapal->id,
             'masa_berlaku'      => 'required|date',
             'grade'             => 'required|string|max:1',
-            // 'sertifikat_abk'    => 'required|string',
-            // 'sertifikat_qa'    =>  'required|string',
-            // 'manual_haccp'      => 'required',
+            'sertifikat_abk'    => 'required|string',
+            'sertifikat_qa'    =>  'required|string',
+            'manual_haccp'      => 'required',
             'ukuran_kapal'      => 'required',
-            // 'daerah_tangkap'    => 'required',
-            // 'lama_trip'         => 'required',
+            'daerah_tangkap'    => 'required',
+            'lama_trip'         => 'required',
             'alat_tangkap'      => 'required',
-            // 'hasil_tangkap'     => 'required',
-            // 'suhu_produk'       => 'required',
-            // 'suhu_palka'        => 'required',
-            // 'nilai_organoleptik'=> 'required',
+            'hasil_tangkap'     => 'required',
+            'suhu_produk'       => 'required',
+            'suhu_palka'        => 'required',
+            'nilai_organoleptik' => 'required',
             'jenis_produk'      => 'required',
-            // 'estimasi_berat'    => 'required',
-            // 'jenis_kapal'        => 'required',
+            'estimasi_berat'    => 'required',
+            'jenis_kapal'        => 'required',
             'pelabuhan_domisili' => 'required',
-            // 'pelabuhan_sandar_1' => 'required',
-            // 'pelabuhan_sandar_2' => 'required',
-            // 'kapal_aktif'       => 'required',
+            'pelabuhan_sandar_1' => 'required',
+            'pelabuhan_sandar_2' => 'required',
+            'kapal_aktif'       => 'required',
             'tgl_inspeksi'      => 'required',
             'foto'              => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
             'sertifikat'        => 'nullable|file|mimes:pdf|max:5120', // max 5MB
@@ -143,7 +149,7 @@ class KapalController extends Controller
 
         // ✅ Update field teks
         $kapal->update([
-            'nama_kapal'        => $request->nama_kapal,
+            // 'nama_kapal'        => $request->nama_kapal,
             'no_izin'           => $request->no_izin,
             'no_sertifikat'     => $request->no_sertifikat,
             'masa_berlaku'      => $request->masa_berlaku,
@@ -160,7 +166,7 @@ class KapalController extends Controller
             'suhu_palka'        => $request->suhu_palka,
             'nilai_organoleptik' => $request->nilai_organoleptik,
             'estimasi_berat'    => $request->estimasi_berat,
-            'jenis_produk'        => $request->jenis_produk,
+            'jenis_produk'       => $request->jenis_produk,
             'jenis_kapal'        => $request->jenis_kapal,
             'pelabuhan_domisili' => $request->pelabuhan_domisili,
             'pelabuhan_sandar_1' => $request->pelabuhan_sandar_1,
