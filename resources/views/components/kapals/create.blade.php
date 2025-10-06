@@ -102,6 +102,12 @@
                         </option>
                         <option value="Sephia Anjani, S.Si" @selected(old('nm_ketua') == 'Sephia Anjani, S.Si')>Sephia Anjani, S.Si</option>
                         <option value="Aris Jatmiko, A.Md" @selected(old('nm_ketua') == 'Aris Jatmiko, A.Md')>Aris Jatmiko, A.Md</option>
+                        <option value="drh. Adam Saba Anggara" @selected(old('nm_ketua') == 'drh. Adam Saba Anggara')>drh. Adam Saba Anggara
+                        </option>
+                        <option value="Ni Made Swigani Umita, S.Tr.Pi" @selected(old('nm_ketua') == 'Ni Made Swigani Umita, S.Tr.Pi')>Ni Made Swigani
+                            Umita, S.Tr.Pi</option>
+                        <option value="Heri Kurniawan, S.St.Pi., M.P" @selected(old('nm_ketua') == 'Heri Kurniawan, S.St.Pi., M.P')>Heri Kurniawan,
+                            S.St.Pi., M.P</option>
                         <option value="Ari Tri Ramdhani" @selected(old('nm_ketua') == 'Ari Tri Ramdhani')>Ari Tri Ramdhani</option>
                         <option value="Yurike Kurnila Prastika" @selected(old('nm_ketua') == 'Yurike Kurnila Prastika')>Yurike Kurnila Prastika
                         </option>
@@ -143,6 +149,12 @@
                         </option>
                         <option value="Sephia Anjani, S.Si" @selected(old('nm_anggota_1') == 'Sephia Anjani, S.Si')>Sephia Anjani, S.Si</option>
                         <option value="Aris Jatmiko, A.Md" @selected(old('nm_anggota_1') == 'Aris Jatmiko, A.Md')>Aris Jatmiko, A.Md</option>
+                        <option value="drh. Adam Saba Anggara" @selected(old('nm_anggota_1') == 'drh. Adam Saba Anggara')>drh. Adam Saba Anggara
+                        </option>
+                        <option value="Ni Made Swigani Umita, S.Tr.Pi" @selected(old('nm_anggota_1') == 'Ni Made Swigani Umita, S.Tr.Pi')>Ni Made Swigani
+                            Umita, S.Tr.Pi</option>
+                        <option value="Heri Kurniawan, S.St.Pi., M.P" @selected(old('nm_anggota_1') == 'Heri Kurniawan, S.St.Pi., M.P')>Heri Kurniawan,
+                            S.St.Pi., M.P</option>
                         <option value="Ari Tri Ramdhani" @selected(old('nm_anggota_1') == 'Ari Tri Ramdhani')>Ari Tri Ramdhani</option>
                         <option value="Yurike Kurnila Prastika" @selected(old('nm_anggota_1') == 'Yurike Kurnila Prastika')>Yurike Kurnila Prastika
                         </option>
@@ -192,6 +204,12 @@
                         </option>
                         <option value="Sephia Anjani, S.Si" @selected(old('nm_anggota_2') == 'Sephia Anjani, S.Si')>Sephia Anjani, S.Si</option>
                         <option value="Aris Jatmiko, A.Md" @selected(old('nm_anggota_2') == 'Aris Jatmiko, A.Md')>Aris Jatmiko, A.Md</option>
+                        <option value="drh. Adam Saba Anggara" @selected(old('nm_anggota_2') == 'drh. Adam Saba Anggara')>drh. Adam Saba Anggara
+                        </option>
+                        <option value="Ni Made Swigani Umita, S.Tr.Pi" @selected(old('nm_anggota_2') == 'Ni Made Swigani Umita, S.Tr.Pi')>Ni Made Swigani
+                            Umita, S.Tr.Pi</option>
+                        <option value="Heri Kurniawan, S.St.Pi., M.P" @selected(old('nm_anggota_2') == 'Heri Kurniawan, S.St.Pi., M.P')>Heri Kurniawan,
+                            S.St.Pi., M.P</option>
                         <option value="Ari Tri Ramdhani" @selected(old('nm_anggota_2') == 'Ari Tri Ramdhani')>Ari Tri Ramdhani</option>
                         <option value="Yurike Kurnila Prastika" @selected(old('nm_anggota_2') == 'Yurike Kurnila Prastika')>Yurike Kurnila Prastika
                         </option>
@@ -268,9 +286,11 @@
                             S.Pi</option>
                         <option value="Siti Nurlatifah, S.St.Pi, M.Si" @selected(old('nm_anggota_3') == 'Siti Nurlatifah, S.St.Pi, M.Si')>Siti Nurlatifah,
                             S.St.Pi, M.Si</option>
-                        <option value="Ni Luh Sunarsih, S.St.Pi" @selected(old('nm_anggota_3') == 'Ni Luh Sunarsih, S.St.Pi')>Ni Luh Sunarsih, S.St.Pi
+                        <option value="Ni Luh Sunarsih, S.St.Pi" @selected(old('nm_anggota_3') == 'Ni Luh Sunarsih, S.St.Pi')>Ni Luh Sunarsih,
+                            S.St.Pi
                         </option>
-                        <option value="Octovianus, S.St.Pi, M.P" @selected(old('nm_anggota_3') == 'Octovianus, S.St.Pi, M.P')>Octovianus, S.St.Pi, M.P
+                        <option value="Octovianus, S.St.Pi, M.P" @selected(old('nm_anggota_3') == 'Octovianus, S.St.Pi, M.P')>Octovianus, S.St.Pi,
+                            M.P
                         </option>
                         <option value="Ni Ketut Wijasari, A.Md" @selected(old('nm_anggota_3') == 'Ni Ketut Wijasari, A.Md')>Ni Ketut Wijasari, A.Md
                         </option>
@@ -279,6 +299,12 @@
                         </option>
                         <option value="Sephia Anjani, S.Si" @selected(old('nm_anggota_3') == 'Sephia Anjani, S.Si')>Sephia Anjani, S.Si</option>
                         <option value="Aris Jatmiko, A.Md" @selected(old('nm_anggota_3') == 'Aris Jatmiko, A.Md')>Aris Jatmiko, A.Md</option>
+                        <option value="drh. Adam Saba Anggara" @selected(old('nm_anggota_3') == 'drh. Adam Saba Anggara')>drh. Adam Saba Anggara
+                        </option>
+                        <option value="Ni Made Swigani Umita, S.Tr.Pi" @selected(old('nm_anggota_3') == 'Ni Made Swigani Umita, S.Tr.Pi')>Ni Made Swigani
+                            Umita, S.Tr.Pi</option>
+                        <option value="Heri Kurniawan, S.St.Pi., M.P" @selected(old('nm_anggota_3') == 'Heri Kurniawan, S.St.Pi., M.P')>Heri Kurniawan,
+                            S.St.Pi., M.P</option>
                         <option value="Ari Tri Ramdhani" @selected(old('nm_anggota_3') == 'Ari Tri Ramdhani')>Ari Tri Ramdhani</option>
                         <option value="Yurike Kurnila Prastika" @selected(old('nm_anggota_3') == 'Yurike Kurnila Prastika')>Yurike Kurnila Prastika
                         </option>
@@ -370,6 +396,12 @@
                         </option>
                         <option value="Sephia Anjani, S.Si" @selected(old('nm_anggota_4') == 'Sephia Anjani, S.Si')>Sephia Anjani, S.Si</option>
                         <option value="Aris Jatmiko, A.Md" @selected(old('nm_anggota_4') == 'Aris Jatmiko, A.Md')>Aris Jatmiko, A.Md</option>
+                        <option value="drh. Adam Saba Anggara" @selected(old('nm_anggota_4') == 'drh. Adam Saba Anggara')>drh. Adam Saba Anggara
+                        </option>
+                        <option value="Ni Made Swigani Umita, S.Tr.Pi" @selected(old('nm_anggota_4') == 'Ni Made Swigani Umita, S.Tr.Pi')>Ni Made Swigani
+                            Umita, S.Tr.Pi</option>
+                        <option value="Heri Kurniawan, S.St.Pi., M.P" @selected(old('nm_anggota_4') == 'Heri Kurniawan, S.St.Pi., M.P')>Heri Kurniawan,
+                            S.St.Pi., M.P</option>
                         <option value="Ari Tri Ramdhani" @selected(old('nm_anggota_4') == 'Ari Tri Ramdhani')>Ari Tri Ramdhani</option>
                         <option value="Yurike Kurnila Prastika" @selected(old('nm_anggota_4') == 'Yurike Kurnila Prastika')>Yurike Kurnila Prastika
                         </option>
